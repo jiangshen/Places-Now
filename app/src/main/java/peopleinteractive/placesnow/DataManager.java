@@ -13,6 +13,8 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.util.List;
 
 /**
@@ -28,23 +30,32 @@ public class DataManager {
     public static List<EncloseLocation> locList;
 
 
-    public void addLocation(final Location loc, final MapMain context, final Runnable runnable) {
+    public void addLocation(final Location loc) {
         Firebase locRef = REF.child("locations");
+        //if (loc.)
         EncloseLocation toAdd = new EncloseLocation(loc);
 
-        Firebase nameRef = locRef.child(toAdd.getName()).push();
+        Firebase nameRef = locRef.child(toAdd.getName());
+        nameRef.child(toAdd.LL.toString()).child("description").setValue(toAdd.getDescription(), new Firebase.CompletionListener() {
+            @Override
+            public void onComplete(FirebaseError firebaseError, Firebase firebase) {
+                if (firebaseError != null) {
+                    System.out.println("Data could not be saved. " + firebaseError.getMessage());
+                } else {
+                    System.out.println("Data saved successfully.");
+                }
+            }
+        });
 
-        //Firebase GPSRef = nameRef.child();
-
-//        locRef.cre
-
-
+        nameRef.child(toAdd.LL.toString()).child("comments").push().setValue(toAdd.getComments(), new Firebase.CompletionListener() {
+            @Override
+            public void onComplete(FirebaseError firebaseError, Firebase firebase) {
+                if (firebaseError != null) {
+                    System.out.println("Data could not be saved. " + firebaseError.getMessage());
+                } else {
+                    System.out.println("Data saved successfully.");
+                }
+            }
+        });
     }
-
-
-
-
-
-
-
 }
