@@ -63,6 +63,8 @@ public class MapMain extends FragmentActivity implements OnMapReadyCallback, Loc
 
     private String searchQuery;
 
+    private String currPlaceName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,7 +89,7 @@ public class MapMain extends FragmentActivity implements OnMapReadyCallback, Loc
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Marker m = markerMap.get(items.get(position));
-                Log.d("FML", items.get(position));
+                currPlaceName = items.get(position);
                 m.showInfoWindow();
                 LatLng markerPosition = m.getPosition();
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(markerPosition, 16));
@@ -370,4 +372,12 @@ public class MapMain extends FragmentActivity implements OnMapReadyCallback, Loc
         }
         return (ArrayList<Place>)findPlaces;
     }
+
+    public void transitionToInfo(View view) {
+        Intent myIntent = new Intent(MapMain.this, Info.class);
+        Log.d("FML", currPlaceName + " TRANSISIONNNNNN");
+        myIntent.putExtra("PlaceName", currPlaceName);
+        startActivity(myIntent);
+    }
+
 }

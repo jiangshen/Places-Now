@@ -82,11 +82,13 @@
 
             <Button
                 android:layout_gravity="center_horizontal"
+                android:id="@+id/button_details"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:textColor="#FFF"
                 android:backgroundTint="#448AFF"
+                android:onClick="transitionToInfo"
                 android:text="Details >"/>
 
         </LinearLayout>
