@@ -1,18 +1,27 @@
 package peopleinteractive.placesnow;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.google.android.gms.maps.model.LatLng;
+
 import java.util.List;
 
 import java.util.ArrayList;
 
 public class Info extends AppCompatActivity {
+
+    private String currPlaceName;
+    private double currLat;
+    private double currLng;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,14 +30,13 @@ public class Info extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        Intent intent = getIntent();
+        currPlaceName = intent.getStringExtra("PlaceName");
+        currLat = intent.getDoubleExtra("Lat", 0.0);
+        currLng = intent.getDoubleExtra("Lng", 0.0);
+
+        Log.d("YO", currPlaceName);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ListView comments = (ListView) findViewById(R.id.commentListView);

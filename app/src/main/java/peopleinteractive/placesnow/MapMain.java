@@ -378,7 +378,8 @@ public class MapMain extends FragmentActivity implements OnMapReadyCallback, Loc
     public void transitionToInfo(View view) {
         Intent myIntent = new Intent(MapMain.this, Info.class);
         myIntent.putExtra("PlaceName", currPlaceName);
-        myIntent.putExtra("LatLng", currMarker.getPosition());
+        myIntent.putExtra("Lat", currMarker.getPosition().longitude);
+        myIntent.putExtra("Lng", currMarker.getPosition().latitude);
         startActivity(myIntent);
     }
 
