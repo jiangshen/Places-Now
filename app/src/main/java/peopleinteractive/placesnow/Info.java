@@ -6,6 +6,10 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 public class Info extends AppCompatActivity {
 
@@ -25,6 +29,18 @@ public class Info extends AppCompatActivity {
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        ArrayList<String> commentArray = new ArrayList<String>();
+        commentArray.add("a");
+        commentArray.add("b");
+        commentArray.add("c");
+        ArrayAdapter<String> commentAdapter = new ArrayAdapter<String>(
+                this,
+                android.R.layout.simple_list_item_1,
+                commentArray);
+        ListView myList=
+                (ListView) findViewById(R.id.commentListView);
+        myList.setAdapter(commentAdapter);
     }
 
 }
