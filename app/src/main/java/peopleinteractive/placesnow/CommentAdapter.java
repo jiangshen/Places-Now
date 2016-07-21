@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.List;
@@ -32,6 +33,8 @@ public class CommentAdapter extends ArrayAdapter<Comment> {
             TextView body = (TextView) v.findViewById(R.id.body);
             TextView timeStamp = (TextView) v.findViewById(R.id.time_stamp);
             TextView score = (TextView) v.findViewById(R.id.score);
+            Button upVote = (Button) v.findViewById(R.id.up_vote);
+            Button downVote = (Button) v.findViewById(R.id.down_vote);
             if (body != null) {
                 body.setText(c.getInfo());
             }
