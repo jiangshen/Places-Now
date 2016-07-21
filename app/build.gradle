@@ -10,6 +10,7 @@ android {
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -23,9 +24,12 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.4.0'
-    compile 'com.google.android.gms:play-services:9.2.0'
+
     compile 'com.android.support:design:23.1.0'
     compile 'com.android.support:cardview-v7:23.0.+'
-    compile 'com.android.support:recyclerview-v7:23.0.+'
+//    compile 'com.android.support:recyclerview-v7:23.0.+'
     compile 'com.firebase:firebase-client-android:2.5.2+'
+
+    //originally 9.2.1, getMap() function is removed USE 8.4.0
+    compile 'com.google.android.gms:play-services:8.4.0'
 }
