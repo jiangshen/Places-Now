@@ -87,6 +87,7 @@ public class MapMain extends FragmentActivity implements OnMapReadyCallback, Loc
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Marker m = markerMap.get(items.get(position));
+                Log.d("FML", items.get(position));
                 m.showInfoWindow();
                 LatLng markerPosition = m.getPosition();
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(markerPosition, 16));
