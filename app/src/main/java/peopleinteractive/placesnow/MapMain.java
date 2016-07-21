@@ -60,6 +60,8 @@ public class MapMain extends FragmentActivity implements OnMapReadyCallback, Loc
     private ListView list;
     public final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 6;
 
+    private String searchQuery;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,8 +95,8 @@ public class MapMain extends FragmentActivity implements OnMapReadyCallback, Loc
         //INIT
         checkPhoneLocationProvided();
 
-        updateListView();
         updateLocation();
+        updateListView();
         m_Location = getLocation();
         zoomToCurrLocation();
 
@@ -110,9 +112,11 @@ public class MapMain extends FragmentActivity implements OnMapReadyCallback, Loc
         @Override
         public boolean onQueryTextSubmit(String query) {
 //            MenuItemCompat.collapseActionView(searchMenuItem);
-
-
-
+            sv.clearFocus();
+            if (!query.equals(searchQuery)) {
+                searchQuery = query;
+                Log.d("HOLABCN", query);
+            }
             return false;
         }
         @Override
@@ -359,154 +363,3 @@ public class MapMain extends FragmentActivity implements OnMapReadyCallback, Loc
         return (ArrayList<Place>)findPlaces;
     }
 }
-
-//
-//
-//
-//    /**
-//     * Manipulates the map once available.
-//     * This callback is triggered when the map is ready to be used.
-//     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-//     * we just add a marker near Sydney, Australia.
-//     * If Google Play services is not installed on the device, the user will be prompted to install
-//     * it inside the SupportMapFragment. This method will only be triggered once the user has
-//     * installed Google Play services and returned to the app.
-//     */
-//    @Override
-//    public void onMapReady(GoogleMap googleMap) {
-//        mMap = googleMap;
-//        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-//
-//        updateLocation();
-//
-//        mMap.getUiSettings().setMapToolbarEnabled(true);
-//        mMap.getUiSettings().setMyLocationButtonEnabled(true);
-//        mMap.getUiSettings().setZoomControlsEnabled(true);
-//
-//        Location location = getLocation();
-//
-//        if (location != null) {
-//            onLocationChanged(location);
-//            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 12));
-//        }
-//    }
-//
-//    private void checkPhoneLocationProvided() {
-//        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-//        boolean gps_enabled = false;
-//        boolean network_enabled = false;
-//
-//        try {
-//            gps_enabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
-//        } catch(Exception ex) {}
-//        try {
-//            network_enabled = lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-//        } catch(Exception ex) {}
-//
-//        if(!gps_enabled && !network_enabled) {
-//            final AlertDialog.Builder dialog = new AlertDialog.Builder(MapMain.this);
-//            dialog.setTitle("You location required");
-//            dialog.setMessage("Please enable your location to see the list of our results");
-//            dialog.setPositiveButton("Open Location Settings", new DialogInterface.OnClickListener() {
-//                @Override
-//                public void onClick(DialogInterface paramDialogInterface, int paramInt) {
-//                    Intent myIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-//                    startActivity(myIntent);
-//                }
-//            });
-//            dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-//                @Override
-//                public void onClick(DialogInterface paramDialogInterface, int paramInt) {
-//                }
-//            });
-//            dialog.show();
-//        }
-//    }
-//
-//    private void updateLocation() {
-////        if (mMap == null) {
-////            mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
-////                    .getMap();
-////            if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
-////                    == PackageManager.PERMISSION_GRANTED) {
-////                mMap.setMyLocationEnabled(true);
-////            } else {
-////                ActivityCompat.requestPermissions(MapMain.this,
-////                        new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
-////                        MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
-////            }
-////            if (mMap != null) {
-////                mMap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
-////                    @Override
-////                    public void onMyLocationChange(Location location) {
-////                        m_Location = location;
-////                    }
-////                });
-////
-////            }
-////        }
-//    }
-//
-//    private void zoomToCurrLocation() {
-//        if (m_Location != null) {
-//            LatLng target = new LatLng(m_Location.getLatitude(), m_Location.getLongitude());
-//            CameraPosition.Builder builder = new CameraPosition.Builder();
-//            builder.zoom(13);
-//            builder.target(target);
-//            this.mMap.animateCamera(CameraUpdateFactory.newCameraPosition(builder.build()));
-//        }
-//    }
-//
-//    public Location getLocation() {
-//        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
-//                != PackageManager.PERMISSION_GRANTED ) {
-//            ActivityCompat.requestPermissions(MapMain.this,
-//                    new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
-//        }
-//        m_LocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-//        Criteria criteria = new Criteria();
-//        String bestProvider = m_LocationManager.getBestProvider(criteria, true);
-//        Location location = m_LocationManager.getLastKnownLocation(bestProvider);
-//        return location;
-//    }
-//
-//    @Override
-//    public void onLocationChanged(Location location) {
-////        boolean bPass = (items.size() == 0);
-//        m_Location = location;
-////        if (bPass) {
-////            updateListView();
-////        }
-//    }
-//
-//    @Override
-//    public void onProviderDisabled(String provider) {
-//    }
-//
-//    @Override
-//    public void onProviderEnabled(String provider) {
-//    }
-//
-//    @Override
-//    public void onStatusChanged(String provider, int status, Bundle extras) {
-//    }
-//
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode,
-//                                           String permissions[], int[] grantResults) {
-//        switch (requestCode) {
-//            case MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION: {
-//                if (grantResults.length > 0
-//                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//                    Log.d("Map", "Permission granted");
-//                    updateLocation();
-//                    m_Location = getLocation();
-//                    zoomToCurrLocation();
-//                } else {
-//                    Log.d("Map", "Permission denied");
-//                }
-//                return;
-//            }
-//        }
-//    }
-//}

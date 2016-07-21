@@ -29,6 +29,7 @@
                 <android.support.v7.widget.SearchView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:queryHint="Find Places"
                     android:id="@+id/search_view" />
 
                 <ListView
