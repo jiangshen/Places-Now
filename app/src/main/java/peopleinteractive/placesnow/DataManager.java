@@ -12,6 +12,7 @@ import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
 
@@ -36,6 +37,8 @@ public class DataManager {
         EncloseLocation toAdd = new EncloseLocation(name);
 
         Firebase nameRef = locRef.child(toAdd.getName());
+
+        Log.d("FIRE", toAdd.getName() + " aaaaa");
         // .child(toAdd.LL.toString()) for when we put LatLng back into this
         nameRef.child("description").setValue(toAdd.getDescription(), new Firebase.CompletionListener() {
             @Override

@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.firebase.client.Firebase;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.List;
@@ -30,10 +31,14 @@ public class Info extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        Firebase.setAndroidContext(this);
+
         Intent intent = getIntent();
         currPlaceName = intent.getStringExtra("PlaceName");
         currLat = intent.getDoubleExtra("Lat", 0.0);
         currLng = intent.getDoubleExtra("Lng", 0.0);
+
+        onlineUpdate();
 
         Log.d("YO", currPlaceName);
 
@@ -44,5 +49,10 @@ public class Info extends AppCompatActivity {
         commentArray.add(new Comment("hahahahaha"));
         CommentAdapter commentAdapter = new CommentAdapter(this, R.layout.comment_list, commentArray);
         comments.setAdapter(commentAdapter);
+    }
+
+    private void onlineUpdate() {
+        Log.d("YOYO", "STARTED");
+        DataManager.addLocation(currPlaceName);
     }
 }
