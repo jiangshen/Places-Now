@@ -23,6 +23,7 @@
 
     <include layout="@layout/content_info" />
 
+<<<<<<< HEAD
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
@@ -32,4 +33,6 @@
         android:clickable="true"
         style="@style/AppTheme" />
 
+=======
+>>>>>>> origin/master
 </android.support.design.widget.CoordinatorLayout>

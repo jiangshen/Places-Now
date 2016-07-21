@@ -18,6 +18,9 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 
+import com.firebase.client.Firebase;
+import com.google.android.gms.maps.model.LatLng;
+
 import java.util.List;
 
 import java.util.ArrayList;
@@ -25,6 +28,9 @@ import java.util.ArrayList;
 public class Info extends AppCompatActivity {
 
     List<Comment> commentArray = new ArrayList<Comment>();
+    private String currPlaceName;
+    private double currLat;
+    private double currLng;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,26 +45,32 @@ public class Info extends AppCompatActivity {
             public void onClick(View view) {
                 Log.d("CLICKED FAB", "clicked");
                 displayPopup();
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
             }
         });
+
+        Firebase.setAndroidContext(this);
+
+        Intent intent = getIntent();
+        currPlaceName = intent.getStringExtra("PlaceName");
+        currLat = intent.getDoubleExtra("Lat", 0.0);
+        currLng = intent.getDoubleExtra("Lng", 0.0);
+
+        onlineUpdate();
+
+        Log.d("YO", currPlaceName);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ListView comments = (ListView) findViewById(R.id.commentListView);
         List<Comment> commentArray = new ArrayList<Comment>();
+        commentArray.add(new Comment("hahahahaha"));
         CommentAdapter commentAdapter = new CommentAdapter(this, R.layout.comment_list, commentArray);
         comments.setAdapter(commentAdapter);
-//        commentArray.add("a");
-//        commentArray.add("b");
-//        commentArray.add("c");
-//        ArrayAdapter<String> commentAdapter = new ArrayAdapter<String>(
-//                this,
-//                android.R.layout.simple_list_item_1,
-//                commentArray);
-//        ListView myList=
-//                (ListView) findViewById(R.id.commentListView);
-//        myList.setAdapter(commentAdapter);
+    }
+
+    private void onlineUpdate() {
+        Log.d("YOYO", "STARTED");
+        DataManager.addLocation(currPlaceName);
     }
 
     private void displayPopup() {

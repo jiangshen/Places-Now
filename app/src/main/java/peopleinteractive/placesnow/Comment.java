@@ -1,5 +1,8 @@
 package peopleinteractive.placesnow;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by Maggie on 7/21/2016.
  */
@@ -12,7 +15,9 @@ public class Comment {
         score = 0;
         this.info = info;
         Long timeLong = System.currentTimeMillis()/1000;
-        time = timeLong.toString();
+        SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy HH:mm");
+        Date date = new Date(timeLong);
+        time = sdf.format(date);
     }
 
     public void addToScore() {
@@ -34,9 +39,6 @@ public class Comment {
 
     @Override
     public String toString() {
-//        StringBuilder comment = new StringBuilder();
-//        comment.append(getScore() + "\n" + getInfo() + "\n" + getTime());
-//        return comment.toString();
         return getScore() + "\n" + getInfo() + "\n" + getTime();
     }
 }

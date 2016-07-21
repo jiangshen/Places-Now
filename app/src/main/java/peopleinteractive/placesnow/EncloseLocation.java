@@ -3,6 +3,7 @@ import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,21 +13,18 @@ import java.util.List;
  */
 public class EncloseLocation {
 
-    public Location loc;
     public String name;
     public String description;
     List<Comment> comments;
 
-    public double latitude;
-    public double longitude;
+    public String LL;
 
     public EncloseLocation() {}
 
-    public EncloseLocation(Location location){
-        this.latitude = location.getLatitude();
-        this.longitude = location.getLongitude();
-        //this.name = location.    get name???
-        this.description = location.toString();
+    public EncloseLocation(String name){
+        //this.LL = latlon.toString();
+        this.name = name;
+        this.description = "test";
         this.comments = new ArrayList<Comment>();
     }
 
@@ -36,6 +34,10 @@ public class EncloseLocation {
 
     public String getName() {
         return this.name;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
     }
 
 
