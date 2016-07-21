@@ -21,9 +21,9 @@ public class EncloseLocation {
 
     public EncloseLocation() {}
 
-    public EncloseLocation(LatLng latlon){
-        this.LL = latlon.toString();
-        //this.name = location.    get name???
+    public EncloseLocation(String name){
+        //this.LL = latlon.toString();
+        this.name = name;
         this.description = "test";
         this.comments = new ArrayList<Comment>();
     }

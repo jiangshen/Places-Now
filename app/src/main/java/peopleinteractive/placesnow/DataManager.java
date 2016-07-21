@@ -30,13 +30,14 @@ public class DataManager {
     public static List<EncloseLocation> locList;
 
 
-    public void addLocation(final LatLng latlon) {
+    public void addLocation(final String name) {
         Firebase locRef = REF.child("locations");
         //if (loc.)
-        EncloseLocation toAdd = new EncloseLocation(latlon);
+        EncloseLocation toAdd = new EncloseLocation(name);
 
         Firebase nameRef = locRef.child(toAdd.getName());
-        nameRef.child(toAdd.LL.toString()).child("description").setValue(toAdd.getDescription(), new Firebase.CompletionListener() {
+        // .child(toAdd.LL.toString()) for when we put LatLng back into this
+        nameRef.child("description").setValue(toAdd.getDescription(), new Firebase.CompletionListener() {
             @Override
             public void onComplete(FirebaseError firebaseError, Firebase firebase) {
                 if (firebaseError != null) {
@@ -47,7 +48,7 @@ public class DataManager {
             }
         });
 
-        nameRef.child(toAdd.LL.toString()).child("comments").push().setValue(toAdd.getComments(), new Firebase.CompletionListener() {
+        nameRef.child("comments").push().setValue(toAdd.getComments(), new Firebase.CompletionListener() {
             @Override
             public void onComplete(FirebaseError firebaseError, Firebase firebase) {
                 if (firebaseError != null) {
