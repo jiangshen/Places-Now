@@ -20,7 +20,8 @@
         android:id="@+id/locationName"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:textSize="40dp"/>
+        android:textSize="40dp"
+        android:textColor="@color/textPrimary" />
 
     <TextView android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
@@ -30,7 +31,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/commentListView"
         android:layout_below="@+id/locationName"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:smoothScrollbar="false" />
 
 
 </RelativeLayout>

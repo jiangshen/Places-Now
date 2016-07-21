@@ -4,13 +4,11 @@ package peopleinteractive.placesnow;
  * Created by Maggie on 7/21/2016.
  */
 public class Comment {
-    private String name;
     private String time;
     private String info;
     private int score;
 
-    Comment(String name, String info) {
-        this.name = name;
+    Comment(String info) {
         score = 0;
         this.info = info;
         Long timeLong = System.currentTimeMillis()/1000;
@@ -24,9 +22,6 @@ public class Comment {
         score--;
     }
 
-    public String getName() {
-        return name;
-    }
     public String getTime() {
         return time;
     }
