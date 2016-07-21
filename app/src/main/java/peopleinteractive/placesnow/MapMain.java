@@ -96,12 +96,12 @@ public class MapMain extends FragmentActivity implements OnMapReadyCallback, Loc
         checkPhoneLocationProvided();
 
         updateLocation();
-        updateListView();
+//        updateListView();
         m_Location = getLocation();
         zoomToCurrLocation();
 
         mMap.getUiSettings().setMapToolbarEnabled(true);
-        mMap.getUiSettings().setMyLocationButtonEnabled(true);
+        mMap.getUiSettings().setMyLocationButtonEnabled(false);
         mMap.getUiSettings().setZoomControlsEnabled(true);
     }
 
@@ -111,11 +111,10 @@ public class MapMain extends FragmentActivity implements OnMapReadyCallback, Loc
     private SearchView.OnQueryTextListener searchListener = new SearchView.OnQueryTextListener() {
         @Override
         public boolean onQueryTextSubmit(String query) {
-//            MenuItemCompat.collapseActionView(searchMenuItem);
             sv.clearFocus();
             if (!query.equals(searchQuery)) {
                 searchQuery = query;
-                Log.d("HOLABCN", query);
+                updateListView();
             }
             return false;
         }
@@ -345,7 +344,7 @@ public class MapMain extends FragmentActivity implements OnMapReadyCallback, Loc
         /* here you should be pass the you current location latitude and longitude, */
         List<Place> findPlaces = new ArrayList<>();
         if (null != m_Location) {
-            findPlaces = service.findPlaces(m_Location.getLatitude(), m_Location.getLongitude(), "cinema");
+            findPlaces = service.findPlaces(m_Location.getLatitude(), m_Location.getLongitude(), searchQuery);
 
             m_Places = new String[findPlaces.size()];
             m_URL = new String[findPlaces.size()];
