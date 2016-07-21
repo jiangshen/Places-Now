@@ -36,15 +36,5 @@ public class Info extends AppCompatActivity {
         commentArray.add(new Comment("hahahahaha"));
         CommentAdapter commentAdapter = new CommentAdapter(this, R.layout.comment_list, commentArray);
         comments.setAdapter(commentAdapter);
-//        commentArray.add("a");
-//        commentArray.add("b");
-//        commentArray.add("c");
-//        ArrayAdapter<String> commentAdapter = new ArrayAdapter<String>(
-//                this,
-//                android.R.layout.simple_list_item_1,
-//                commentArray);
-//        ListView myList=
-//                (ListView) findViewById(R.id.commentListView);
-//        myList.setAdapter(commentAdapter);
     }
 }
