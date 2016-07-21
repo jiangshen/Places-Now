@@ -18,7 +18,9 @@
         android:textSize="35dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="142dp" />
+        android:layout_marginTop="142dp"
+        android:textColor="@color/textPrimary"
+        android:textAlignment="center" />
 
     <EditText
         android:layout_width="fill_parent"
@@ -27,15 +29,9 @@
         android:ems="10"
         android:id="@+id/editText"
         android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/Title" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Location Name"
-        android:id="@+id/locationName"
-        android:layout_below="@+id/Title"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignLeft="@+id/Title"
+        android:hint="Location Name"
+        android:textColorHint="@color/textSecondary"
+        android:textColor="@color/textPrimary" />
 
 </RelativeLayout>

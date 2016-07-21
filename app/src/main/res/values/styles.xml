@@ -5,7 +5,12 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryLight">@color/colorPrimaryLight</item>
+        <item name="colorText">@color/colorText</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="textPrimary">@color/textPrimary</item>
+        <item name="textSecondary">@color/textSecondary</item>
+        <item name="colorDivider">@color/colorDivider</item>
     </style>
 
     <style name="AppTheme.Maps" parent="Theme.AppCompat.Light.NoActionBar">
