@@ -51,6 +51,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="peopleinteractive.placesnow.MapMain" />
         </activity>
+        <activity android:name=".Add"></activity>
     </application>
 
 </manifest>
