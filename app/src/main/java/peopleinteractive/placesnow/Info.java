@@ -30,17 +30,17 @@ public class Info extends AppCompatActivity {
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        ArrayList<String> commentArray = new ArrayList<String>();
-        commentArray.add("a");
-        commentArray.add("b");
-        commentArray.add("c");
-        ArrayAdapter<String> commentAdapter = new ArrayAdapter<String>(
-                this,
-                android.R.layout.simple_list_item_1,
-                commentArray);
-        ListView myList=
-                (ListView) findViewById(R.id.commentListView);
-        myList.setAdapter(commentAdapter);
+        ArrayList<Comment> commentArray = new ArrayList<Comment>();
+//        commentArray.add("a");
+//        commentArray.add("b");
+//        commentArray.add("c");
+//        ArrayAdapter<String> commentAdapter = new ArrayAdapter<String>(
+//                this,
+//                android.R.layout.simple_list_item_1,
+//                commentArray);
+//        ListView myList=
+//                (ListView) findViewById(R.id.commentListView);
+//        myList.setAdapter(commentAdapter);
     }
 
 }
