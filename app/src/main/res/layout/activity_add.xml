@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Add Information About"
+        android:text="Add Information"
         android:id="@+id/Title"
         android:textSize="35dp"
         android:layout_above="@+id/textBox"
@@ -25,19 +25,25 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:inputType="textMultiLine"
-        android:ems="10"
         android:id="@+id/textBox"
-        android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/Title"
-        android:hint="Location Name"
+        android:hint="What are your thoughts?"
         android:textColorHint="@color/textSecondary"
-        android:textColor="@color/textPrimary" />
+        android:textColor="@color/textPrimary"
+        android:ems="10"
+        android:focusableInTouchMode="false"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true"
+        android:maxLength="140"
+        android:nestedScrollingEnabled="false" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Submit"
         android:id="@+id/button1"
+        android:textColor="@color/textPrimary"
+        android:background="@color/colorPrimaryLight"
         android:layout_below="@+id/textBox"
-        android:layout_alignEnd="@+id/Title" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="85dp" />
 
 </RelativeLayout>
