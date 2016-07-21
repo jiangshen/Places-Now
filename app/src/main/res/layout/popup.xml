@@ -3,9 +3,23 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_centerInParent="true">
+    android:layout_centerInParent="true"
+    android:background="@color/colorText"
+    android:gravity="center">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="false"
+        android:id="@+id/linearLayout"
+        android:gravity="center">
+
+    </LinearLayout>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="265dp"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Add Information"
@@ -14,7 +28,22 @@
         android:textColor="@color/textPrimary"
         android:textAlignment="center"
         android:background="@color/colorText"
-        android:layout_centerHorizontal="true" />
+        android:gravity="center"
+        android:layout_below="@+id/linearLayout"
+        android:layout_alignStart="@+id/button1" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:id="@+id/button1"
+        android:textColor="@color/colorText"
+        android:background="@color/colorPrimary"
+        android:layout_gravity="center_horizontal"
+        android:layout_below="@+id/textBox"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="57dp"
+        android:gravity="center" />
 
     <EditText
         android:layout_width="fill_parent"
@@ -29,31 +58,10 @@
         android:maxLength="140"
         android:nestedScrollingEnabled="false"
         android:background="@color/colorText"
-        android:gravity="center"
+        android:textAlignment="textStart"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/Title"
-        android:layout_alignEnd="@+id/Title" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Submit"
-        android:id="@+id/button1"
-        android:textColor="@color/textPrimary"
-        android:background="@color/colorPrimaryLight"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center"
-        android:layout_below="@+id/textBox"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cancel"
-        android:id="@+id/button2"
-        android:background="@color/colorPrimaryLight"
-        android:textColor="@color/textPrimary"
-        android:layout_below="@+id/button1"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignEnd="@+id/Title"
+        android:gravity="center" />
 
 </RelativeLayout>
