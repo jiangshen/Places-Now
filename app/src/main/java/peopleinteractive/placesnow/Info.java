@@ -21,6 +21,7 @@ import java.util.ArrayList;
 
 public class Info extends AppCompatActivity {
 
+    ArrayList<Comment> commentArray = new ArrayList<Comment>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +40,6 @@ public class Info extends AppCompatActivity {
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        ArrayList<Comment> commentArray = new ArrayList<Comment>();
 //        commentArray.add("a");
 //        commentArray.add("b");
 //        commentArray.add("c");
@@ -52,13 +52,16 @@ public class Info extends AppCompatActivity {
 //        myList.setAdapter(commentAdapter);
     }
 
-    public void popup() {
+    public void popup(View view) {
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final View popupView = inflater.inflate(R.layout.popup,
                 null, false);
 
-        final EditText comments = (EditText) popupView
+        final EditText comment = (EditText) popupView
                 .findViewById(R.id.textBox);
+
+        String newComment = comment.toString();
+        commentArray.add(new Comment(newComment));
 
         // the alert dialog
         new AlertDialog.Builder(Info.this).setView(popupView).show();
