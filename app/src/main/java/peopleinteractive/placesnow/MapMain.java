@@ -130,6 +130,9 @@ public class MapMain extends FragmentActivity implements OnMapReadyCallback, Loc
     private void updateListView() {
         boolean bPass = (items.size() < 1);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, items);
+
+        Log.d("FML", items.toString());
+
         adapter.notifyDataSetChanged();
         list.setAdapter(adapter);
         if (bPass) {
