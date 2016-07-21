@@ -39,7 +39,7 @@ public class CommentAdapter extends ArrayAdapter<Comment> {
                 timeStamp.setText(c.getTime());
             }
             if (score != null) {
-                score.setText(c.getScore());
+                score.setText(Integer.toString(c.getScore()));
             }
         }
         return v;

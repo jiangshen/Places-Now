@@ -33,6 +33,7 @@ public class Info extends AppCompatActivity {
 
         ListView comments = (ListView) findViewById(R.id.commentListView);
         List<Comment> commentArray = new ArrayList<Comment>();
+        commentArray.add(new Comment("hahahahaha"));
         CommentAdapter commentAdapter = new CommentAdapter(this, R.layout.comment_list, commentArray);
         comments.setAdapter(commentAdapter);
 //        commentArray.add("a");
