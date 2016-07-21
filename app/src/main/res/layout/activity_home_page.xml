@@ -27,7 +27,7 @@
     <Button
         android:layout_width="223dp"
         android:layout_height="wrap_content"
-        android:text="Get Started"
+        android:text="Enter"
         android:id="@+id/button"
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.05"
