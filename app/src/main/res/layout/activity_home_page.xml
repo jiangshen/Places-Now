@@ -5,22 +5,23 @@
     android:weightSum="1">
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="296dp"
+        android:layout_height="191dp"
         android:id="@+id/imageView"
         android:layout_gravity="center_horizontal"
-        android:src="@drawable/places_now" />
+        android:src="@drawable/places_now"
+        android:layout_weight="0.13" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="The beach in Barceloneta is crowded? Your favorite basketball court is full? You’ll know before you even leave your door."
+        android:text="\n\nThe beach in Barceloneta is crowded? Your favorite basketball court is full? You’ll know before you even leave your door\n."
         android:id="@+id/textView"
         android:autoText="false"
         android:editable="false"
         android:textAlignment="center"
-        android:layout_weight="0.29" />
+        android:layout_weight="0.42" />
 
     <Button
         android:layout_width="223dp"
