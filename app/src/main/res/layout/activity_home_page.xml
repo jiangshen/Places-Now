@@ -1,38 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
+    android:fitsSystemWindows="true"
+    tools:context="peopleinteractive.placesnow.HomePage">
 
-    <ImageView
-        android:layout_width="296dp"
-        android:layout_height="191dp"
-        android:id="@+id/imageView"
-        android:layout_gravity="center_horizontal"
-        android:src="@drawable/places_now"
-        android:layout_weight="0.13" />
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="\n\nThe beach in Barceloneta is crowded?\nYour favorite basketball court is full?\nYou’ll know before you even leave your door\n"
-        android:id="@+id/textView"
-        android:autoText="true"
-        android:editable="false"
-        android:textAlignment="center"
-        android:layout_weight="0.42"
-        android:textColor="@color/textSecondary" />
+        <ImageView
+            android:layout_width="296dp"
+            android:layout_height="191dp"
+            android:id="@+id/imageView"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/places_now"
+            android:layout_weight="0.13" />
 
-    <Button
-        android:layout_width="223dp"
-        android:layout_height="wrap_content"
-        android:text="Enter"
-        android:id="@+id/button"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="0.05"
-        android:onClick="getStarted"
-        android:textColor="@color/textPrimary"
-        android:clickable="true"
-        android:background="@color/colorPrimaryLight" />
-</LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="\n\nThe beach in Barceloneta is crowded?\nYour favorite basketball court is full?\nYou’ll know before you even leave your door\n"
+            android:id="@+id/textView"
+            android:autoText="true"
+            android:editable="false"
+            android:textAlignment="center"
+            android:layout_weight="0.42"
+            android:textColor="@color/textSecondary" />
+
+        <Button
+            android:layout_width="223dp"
+            android:layout_height="wrap_content"
+            android:text="Enter"
+            android:id="@+id/button"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.05"
+            android:onClick="getStarted"
+            android:textColor="@color/textPrimary"
+            android:clickable="true"
+            android:background="@color/colorPrimaryLight" />
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>
