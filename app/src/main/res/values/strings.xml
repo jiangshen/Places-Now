@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Places Now</string>
     <string name="title_activity_map_main">Places Now</string>
+    <string name="title_activity_info">Details</string>
 </resources>
