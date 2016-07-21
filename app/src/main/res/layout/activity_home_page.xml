@@ -13,15 +13,16 @@
         android:layout_weight="0.13" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="\n\nThe beach in Barceloneta is crowded? Your favorite basketball court is full? You’ll know before you even leave your door\n."
+        android:text="\n\nThe beach in Barceloneta is crowded?\nYour favorite basketball court is full?\nYou’ll know before you even leave your door\n"
         android:id="@+id/textView"
-        android:autoText="false"
+        android:autoText="true"
         android:editable="false"
         android:textAlignment="center"
-        android:layout_weight="0.42" />
+        android:layout_weight="0.42"
+        android:textColor="@color/textSecondary" />
 
     <Button
         android:layout_width="223dp"
@@ -30,5 +31,8 @@
         android:id="@+id/button"
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.05"
-        android:onClick="getStarted" />
+        android:onClick="getStarted"
+        android:textColor="@color/textPrimary"
+        android:clickable="true"
+        android:background="@color/colorPrimaryLight" />
 </LinearLayout>
