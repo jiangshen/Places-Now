@@ -12,19 +12,15 @@
         android:layout_height="match_parent"
         android:weightSum="1">
 
-<<<<<<< HEAD
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="\nThe beach in Barceloneta is crowded?\nYour favorite basketball court is full?\nYou’ll know before you even leave your door\n"
-        android:id="@+id/textView"
-        android:autoText="true"
-        android:editable="false"
+        android:text="@string/app_info"
         android:textAlignment="center"
         android:layout_weight="0.42"
         android:textColor="@color/textSecondary" />
-=======
+        <!--android:id="@+id/textView"-->
         <ImageView
             android:layout_width="296dp"
             android:layout_height="191dp"
@@ -32,16 +28,12 @@
             android:layout_gravity="center_horizontal"
             android:src="@drawable/places_now"
             android:layout_weight="0.13" />
->>>>>>> origin/master
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="\n\nThe beach in Barceloneta is crowded?\nYour favorite basketball court is full?\nYou’ll know before you even leave your door\n"
             android:id="@+id/textView"
-            android:autoText="true"
-            android:editable="false"
             android:textAlignment="center"
             android:layout_weight="0.42"
             android:textColor="@color/textSecondary" />
