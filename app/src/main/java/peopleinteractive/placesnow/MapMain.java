@@ -37,6 +37,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -115,6 +116,7 @@ public class MapMain extends FragmentActivity implements OnMapReadyCallback, Loc
             if (!query.equals(searchQuery)) {
                 searchQuery = query;
                 updateListView();
+                Log.d("FML", "new!! " + searchQuery);
             }
             return false;
         }
@@ -131,6 +133,7 @@ public class MapMain extends FragmentActivity implements OnMapReadyCallback, Loc
         adapter.notifyDataSetChanged();
         list.setAdapter(adapter);
         if (bPass) {
+            Log.d("FML", "CALLED UPDATE");
             new GetPlaces(this).execute();
         }
     }
@@ -344,8 +347,10 @@ public class MapMain extends FragmentActivity implements OnMapReadyCallback, Loc
         /* here you should be pass the you current location latitude and longitude, */
         List<Place> findPlaces = new ArrayList<>();
         if (null != m_Location) {
-            findPlaces = service.findPlaces(m_Location.getLatitude(), m_Location.getLongitude(), searchQuery);
 
+            Log.d("FML", searchQuery);
+
+            findPlaces = service.findPlaces(m_Location.getLatitude(), m_Location.getLongitude(), searchQuery);
             m_Places = new String[findPlaces.size()];
             m_URL = new String[findPlaces.size()];
 
