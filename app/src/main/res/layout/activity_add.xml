@@ -16,22 +16,49 @@
         android:text="Add Information About"
         android:id="@+id/Title"
         android:textSize="35dp"
-        android:layout_alignParentTop="true"
+        android:layout_above="@+id/textBox"
         android:layout_centerHorizontal="true"
+<<<<<<< HEAD
         android:layout_marginTop="142dp"
         android:textColor="@color/textPrimary"
         android:textAlignment="center" />
+=======
+        android:layout_marginBottom="75dp" />
+>>>>>>> origin/master
 
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:inputType="textMultiLine"
         android:ems="10"
-        android:id="@+id/editText"
+        android:id="@+id/textBox"
         android:layout_centerVertical="true"
+<<<<<<< HEAD
         android:layout_alignLeft="@+id/Title"
         android:hint="Location Name"
         android:textColorHint="@color/textSecondary"
         android:textColor="@color/textPrimary" />
+=======
+        android:layout_alignLeft="@+id/Title" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Location Name"
+        android:layout_above="@+id/textBox"
+        android:layout_marginBottom="40dp"
+        android:textSize="30dp"
+        android:id="@+id/locationName"
+        android:layout_centerHorizontal="true" />
+>>>>>>> origin/master
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:id="@+id/button1"
+        android:layout_below="@+id/textBox"
+        android:layout_alignEnd="@+id/Title" />
 
 </RelativeLayout>

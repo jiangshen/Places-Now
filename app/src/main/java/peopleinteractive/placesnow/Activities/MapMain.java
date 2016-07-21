@@ -18,6 +18,7 @@ import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.View;
@@ -76,6 +77,7 @@ public class MapMain extends FragmentActivity implements OnMapReadyCallback, Loc
         markerMap = new HashMap<>();
 
         sv = (SearchView) findViewById(R.id.search_view);
+        sv.setOnQueryTextListener(searchListener);
 
         list = (ListView) findViewById(R.id.listView);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -100,6 +102,24 @@ public class MapMain extends FragmentActivity implements OnMapReadyCallback, Loc
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
         mMap.getUiSettings().setZoomControlsEnabled(true);
     }
+
+    /**
+     * listener for the searchview
+     */
+    private SearchView.OnQueryTextListener searchListener = new SearchView.OnQueryTextListener() {
+        @Override
+        public boolean onQueryTextSubmit(String query) {
+//            MenuItemCompat.collapseActionView(searchMenuItem);
+
+
+
+            return false;
+        }
+        @Override
+        public boolean onQueryTextChange(String newText) {
+            return false;
+        }
+    };
 
 
     private void updateListView() {
