@@ -33,7 +33,7 @@
         <activity
             android:name=".MapMain"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"
+            android:theme="@style/AppTheme.Maps"
             android:label="@string/title_activity_map_main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
