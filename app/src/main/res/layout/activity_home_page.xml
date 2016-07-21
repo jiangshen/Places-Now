@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="\n\nThe beach in Barceloneta is crowded?\nYour favorite basketball court is full?\nYou’ll know before you even leave your door\n"
+        android:text="\nThe beach in Barceloneta is crowded?\nYour favorite basketball court is full?\nYou’ll know before you even leave your door\n"
         android:id="@+id/textView"
         android:autoText="true"
         android:editable="false"

@@ -17,33 +17,6 @@
 
     </LinearLayout>
 
-    <TextView
-        android:layout_width="265dp"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Add Information"
-        android:id="@+id/Title"
-        android:textSize="35dp"
-        android:textColor="@color/textPrimary"
-        android:textAlignment="center"
-        android:background="@color/colorText"
-        android:gravity="center"
-        android:layout_below="@+id/linearLayout"
-        android:layout_alignStart="@+id/button1" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Submit"
-        android:id="@+id/button1"
-        android:textColor="@color/colorText"
-        android:background="@color/colorPrimary"
-        android:layout_gravity="center_horizontal"
-        android:layout_below="@+id/textBox"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="57dp"
-        android:gravity="center" />
-
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -58,8 +31,8 @@
         android:nestedScrollingEnabled="false"
         android:background="@color/colorText"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/Title"
-        android:layout_alignEnd="@+id/Title"
-        android:gravity="center" />
+        android:gravity="center"
+        android:layout_alignParentTop="true"
+        android:editable="true" />
 
 </RelativeLayout>
