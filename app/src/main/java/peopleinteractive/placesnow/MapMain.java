@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -19,6 +20,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -26,6 +28,7 @@ public class MapMain extends FragmentActivity implements OnMapReadyCallback, Loc
 
     private GoogleMap mMap;
     private Location mLocation;
+    private LocationManager mLocationManager;
 
 
     private SearchView sv;
@@ -46,6 +49,9 @@ public class MapMain extends FragmentActivity implements OnMapReadyCallback, Loc
 
         //INIT
         checkPhoneLocationProvided();
+
+        mLocation = getLocation();
+        zoomToCurrLocation();
     }
 
 
@@ -61,6 +67,8 @@ public class MapMain extends FragmentActivity implements OnMapReadyCallback, Loc
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+//        mMap.setMyLocationEnabled(true);
 
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(-34, 151);
@@ -122,6 +130,29 @@ public class MapMain extends FragmentActivity implements OnMapReadyCallback, Loc
 //
 //            }
 //        }
+    }
+
+    private void zoomToCurrLocation() {
+        if (mLocation != null) {
+            LatLng target = new LatLng(mLocation.getLatitude(), mLocation.getLongitude());
+            CameraPosition.Builder builder = new CameraPosition.Builder();
+            builder.zoom(13);
+            builder.target(target);
+            this.mMap.animateCamera(CameraUpdateFactory.newCameraPosition(builder.build()));
+        }
+    }
+
+    public Location getLocation() {
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED ) {
+            ActivityCompat.requestPermissions(MapMain.this,
+                    new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+        }
+        mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        Criteria criteria = new Criteria();
+        String bestProvider = mLocationManager.getBestProvider(criteria, true);
+        Location location = mLocationManager.getLastKnownLocation(bestProvider);
+        return location;
     }
 
     @Override
