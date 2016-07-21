@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import java.util.List;
 
 import java.util.ArrayList;
 
@@ -30,7 +31,10 @@ public class Info extends AppCompatActivity {
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        ArrayList<Comment> commentArray = new ArrayList<Comment>();
+        ListView comments = (ListView) findViewById(R.id.commentListView);
+        List<Comment> commentArray = new ArrayList<Comment>();
+        CommentAdapter commentAdapter = new CommentAdapter(this, R.layout.comment_list, commentArray);
+        comments.setAdapter(commentAdapter);
 //        commentArray.add("a");
 //        commentArray.add("b");
 //        commentArray.add("c");
