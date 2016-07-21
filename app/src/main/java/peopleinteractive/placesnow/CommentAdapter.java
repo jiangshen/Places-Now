@@ -13,6 +13,9 @@ import java.util.List;
  * Created by williamcheng on 7/21/16.
  */
 public class CommentAdapter extends ArrayAdapter<Comment> {
+    Button upVote;
+    Button downVote;
+    Comment c;
     public CommentAdapter(Context context, int resource, List<Comment> comments) {
         super(context, resource, comments);
     }
@@ -20,21 +23,18 @@ public class CommentAdapter extends ArrayAdapter<Comment> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View v = convertView;
-
         if (v == null) {
             LayoutInflater vi;
             vi = LayoutInflater.from(getContext());
             v = vi.inflate(R.layout.comment_list, null);
         }
-
-        Comment c = getItem(position);
-
+        c = getItem(position);
         if (c != null) {
             TextView body = (TextView) v.findViewById(R.id.body);
             TextView timeStamp = (TextView) v.findViewById(R.id.time_stamp);
             TextView score = (TextView) v.findViewById(R.id.score);
-            Button upVote = (Button) v.findViewById(R.id.up_vote);
-            Button downVote = (Button) v.findViewById(R.id.down_vote);
+            upVote = (Button) v.findViewById(R.id.up_vote);
+            downVote = (Button) v.findViewById(R.id.down_vote);
             if (body != null) {
                 body.setText(c.getInfo());
             }
@@ -46,5 +46,17 @@ public class CommentAdapter extends ArrayAdapter<Comment> {
             }
         }
         return v;
+    }
+
+    public Button getUpVote() {
+        return upVote;
+    }
+
+    public Button getDownVote() {
+        return downVote;
+    }
+
+    public Comment getComment() {
+        return c;
     }
 }

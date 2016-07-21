@@ -14,7 +14,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
+<<<<<<< Updated upstream
 import android.widget.EditText;
+=======
+import android.widget.Button;
+>>>>>>> Stashed changes
 import android.widget.ListView;
 import android.widget.PopupWindow;
 
@@ -31,9 +35,13 @@ public class Info extends AppCompatActivity {
     private String currPlaceName;
     private double currLat;
     private double currLng;
+    private boolean toggleUp;
+    private boolean toggleDown;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        toggleUp = false;
+        toggleDown = false;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -63,9 +71,48 @@ public class Info extends AppCompatActivity {
 
         ListView comments = (ListView) findViewById(R.id.commentListView);
         List<Comment> commentArray = new ArrayList<Comment>();
-        commentArray.add(new Comment("hahahahaha"));
+        commentArray.add(new Comment("trolololol"));
         CommentAdapter commentAdapter = new CommentAdapter(this, R.layout.comment_list, commentArray);
         comments.setAdapter(commentAdapter);
+        Button upVote = commentAdapter.getUpVote();
+        Button downVote = commentAdapter.getDownVote();
+        final Comment c = commentAdapter.getComment();
+        upVote.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (!toggleUp) {
+                    c.addToScore();
+                    toggleUp = true;
+                }
+                if (toggleUp) {
+                    c.minusToScore();
+                    toggleUp = false;
+                }
+                if (toggleDown) {
+                    c.addToScore();
+                    c.addToScore();
+                    toggleUp = true;
+                    toggleDown = false;
+                }
+            }
+        });
+        downVote.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (!toggleDown) {
+                    c.minusToScore();
+                    toggleDown = true;
+                }
+                if (toggleDown) {
+                    c.addToScore();
+                    toggleDown = false;
+                }
+                if (toggleUp) {
+                    c.minusToScore();
+                    c.minusToScore();
+                    toggleDown = true;
+                    toggleUp = false;
+                }
+            }
+        });
     }
 
     private void onlineUpdate() {
