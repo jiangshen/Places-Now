@@ -46,5 +46,4 @@ public class Info extends AppCompatActivity {
 //                (ListView) findViewById(R.id.commentListView);
 //        myList.setAdapter(commentAdapter);
     }
-
 }
