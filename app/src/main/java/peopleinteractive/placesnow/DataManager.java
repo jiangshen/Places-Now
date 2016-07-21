@@ -30,10 +30,10 @@ public class DataManager {
     public static List<EncloseLocation> locList;
 
 
-    public void addLocation(final Location loc) {
+    public void addLocation(final double lat, final double lon) {
         Firebase locRef = REF.child("locations");
         //if (loc.)
-        EncloseLocation toAdd = new EncloseLocation(loc);
+        EncloseLocation toAdd = new EncloseLocation(lat, lon);
 
         Firebase nameRef = locRef.child(toAdd.getName());
         nameRef.child(toAdd.LL.toString()).child("description").setValue(toAdd.getDescription(), new Firebase.CompletionListener() {

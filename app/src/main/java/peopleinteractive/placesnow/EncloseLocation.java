@@ -13,7 +13,6 @@ import java.util.List;
  */
 public class EncloseLocation {
 
-    public Location loc;
     public String name;
     public String description;
     List<Comment> comments;
@@ -22,10 +21,10 @@ public class EncloseLocation {
 
     public EncloseLocation() {}
 
-    public EncloseLocation(Location location){
-        this.LL = (new LatLng(location.getLatitude(), location.getLongitude())).toString();
+    public EncloseLocation(double lat, double lon){
+        this.LL = (new LatLng(lat, lon)).toString();
         //this.name = location.    get name???
-        this.description = location.toString();
+        this.description = "test";
         this.comments = new ArrayList<Comment>();
     }
 
