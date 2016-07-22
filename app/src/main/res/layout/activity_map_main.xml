@@ -87,7 +87,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:textColor="#FFF"
-                android:backgroundTint="#448AFF"
+                android:backgroundTint="@color/colorPrimary"
                 android:onClick="transitionToInfo"
                 android:text="Details >"/>
 
