@@ -3,16 +3,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_width="wrap_content"
         android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:paddingStart="8dp"
+        android:padding="8dp"
         android:layout_weight="1">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/body"
             android:text="Comments" android:textStyle="bold"
-            android:textSize="14pt"
+            android:textSize="12pt"
             android:textAlignment="center"
             android:gravity="top"
             android:layout_weight="1"
@@ -28,13 +31,13 @@
             android:typeface="monospace"/>
     </LinearLayout>
     <LinearLayout
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_width="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:gravity="center_vertical">
         <Button
             android:layout_width="16pt"
             android:layout_height="16pt"
-            android:layout_gravity="top"
             android:id="@+id/up_vote"
             android:background="@drawable/up_arrow"
             />
