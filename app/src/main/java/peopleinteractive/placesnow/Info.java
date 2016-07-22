@@ -76,13 +76,15 @@ public class Info extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        populateListView();
+    }
+
+    private void populateListView() {
         ListView comments = (ListView) findViewById(R.id.commentListView);
-        List<Comment> commentArray = new ArrayList<>();
-
-        commentArray.add(new Comment("trolololol"));
-
+        
         commentAdapter = new CommentAdapter(this, R.layout.comment_list, commentArray);
         comments.setAdapter(commentAdapter);
+
     }
 
     private void onlineUpdate() {
@@ -113,6 +115,8 @@ public class Info extends AppCompatActivity {
 
                 commentArray.add(new Comment(comment));
                 commentAdapter.notifyDataSetChanged();
+
+                populateListView();
                 Log.d("COMMENT", comment);
                 Log.d("all comments", commentArray.toString());
                 dialog.cancel();
