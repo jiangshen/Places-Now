@@ -111,6 +111,28 @@ public class DataManager {
                     }
                 }
             });
+
+            unique.child("toggleUp").setValue(comment.getToggleUp(), new Firebase.CompletionListener() {
+                @Override
+                public void onComplete(FirebaseError firebaseError, Firebase firebase) {
+                    if (firebaseError != null) {
+                        System.out.println("Data could not be saved. " + firebaseError.getMessage());
+                    } else {
+                        System.out.println("Data saved successfully.");
+                    }
+                }
+            });
+
+            unique.child("toggleDown").setValue(comment.getToggleDown(), new Firebase.CompletionListener() {
+                @Override
+                public void onComplete(FirebaseError firebaseError, Firebase firebase) {
+                    if (firebaseError != null) {
+                        System.out.println("Data could not be saved. " + firebaseError.getMessage());
+                    } else {
+                        System.out.println("Data saved successfully.");
+                    }
+                }
+            });
         }
     }
 
