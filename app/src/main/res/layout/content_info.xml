@@ -48,28 +48,27 @@
                 android:gravity="center">
 
                 <Button
+                    android:layout_gravity="center_horizontal"
+                    android:id="@+id/button_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingStart="8dp"
-                    android:paddingEnd="8dp"
-                    android:text="Sort By Date"
-                    android:id="@+id/button_date"
-                    android:layout_marginRight="8dp"
-                    android:textColor="@color/colorText"
-                    android:background="@color/colorPrimary" />
+                    android:layout_marginBottom="8dp"
+                    android:textColor="#FFF"
+                    android:onClick="sortByDate"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:text="Sort by date"/>
 
                 <Button
+                    android:layout_gravity="center_horizontal"
+                    android:id="@+id/button_rank"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingStart="8dp"
-                    android:paddingEnd="8dp"
-                    android:text="Sort By Rank"
-                    android:id="@+id/button3"
-                    android:layout_marginLeft="8dp"
-                    android:textColor="@color/colorText"
-                    android:background="@color/colorPrimary"
-                    android:onClick="sortByScore" />
-
+                    android:layout_marginBottom="8dp"
+                    android:textColor="#FFF"
+                    android:onClick="sortByScore"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:text="Sort by rank"/>
+                
             </LinearLayout>
 
         </LinearLayout>
