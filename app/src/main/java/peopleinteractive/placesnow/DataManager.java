@@ -119,6 +119,21 @@ public class DataManager {
 
         final ArrayList<Comment> comList = new ArrayList<>();
 
+        comRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                System.out.println("There are " + snapshot.getChildrenCount() + " blog posts");
+                for (DataSnapshot postSnapshot: snapshot.getChildren()) {
+                    Comment comment = postSnapshot.getValue(Comment.class);
+                    comList.add(comment);
+                }
+            }
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                System.out.println("The read failed: " + firebaseError.getMessage());
+            }
+        });
+
         comRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
