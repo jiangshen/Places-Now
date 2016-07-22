@@ -21,6 +21,7 @@ import android.widget.Button;
 
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import com.firebase.client.Firebase;
 import com.google.android.gms.maps.model.LatLng;
@@ -37,6 +38,8 @@ public class Info extends AppCompatActivity {
     private double currLng;
     private boolean toggleUp;
     private boolean toggleDown;
+
+    private TextView locationName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +67,9 @@ public class Info extends AppCompatActivity {
         currLng = intent.getDoubleExtra("Lng", 0.0);
 
         onlineUpdate();
+
+        locationName = (TextView) findViewById(R.id.locationName);
+        locationName.setText(currPlaceName);
 
         Log.d("YO", currPlaceName);
 
