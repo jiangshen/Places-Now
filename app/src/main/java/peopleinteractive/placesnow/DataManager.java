@@ -150,15 +150,18 @@ public class DataManager {
             public void onDataChange(DataSnapshot snapshot) {
                 Log.d("POOP", snapshot.getValue().toString());
                 for (DataSnapshot postSnapshot: snapshot.getChildren()) {
-//                    Log.d("POOPER", postSnapshot.getValue(Comment.class).toString());
                     Comment comment = postSnapshot.getValue(Comment.class);
-//                    comList.add(comment);
+                    Log.d("BIGGER", comment.toString());
+                    comList.add(comment);
                 }
+                Log.d("TIME: ", "ASYNC" + System.currentTimeMillis());
             }
             @Override
             public void onCancelled(FirebaseError firebaseError) {
                 System.out.println("The read failed: " + firebaseError.getMessage());
             }
+
+
         });
 //        comRef.addValueEventListener(new ValueEventListener() {
 //            @Override
@@ -192,6 +195,11 @@ public class DataManager {
 //            public void onCancelled(FirebaseError firebaseError) {
 //            }
 //        });
+        Log.d("BIGGG", comList.toString());
+        Log.d("TIME: ", "RETURN " + System.currentTimeMillis());
+
+        while (comList.isEmpty()) {Log.d("still going", comList.toString());};
+
         return comList;
     }
 }

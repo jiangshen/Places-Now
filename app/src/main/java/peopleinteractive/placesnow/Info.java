@@ -23,7 +23,10 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.List;
@@ -72,8 +75,8 @@ public class Info extends AppCompatActivity {
         currPlaceName = intent.getStringExtra("PlaceName");
         currLat = intent.getDoubleExtra("Lat", 0.0);
         currLng = intent.getDoubleExtra("Lng", 0.0);
-
-        Log.d("APPLE", DataManager.receiveComments(currPlaceName).toString());
+        
+        onlineRetrieval();
 
         onlineUpdate();
 
@@ -124,6 +127,26 @@ public class Info extends AppCompatActivity {
 
     private void onlineUpdate() {
         DataManager.addLocation(currPlaceName);
+    }
+
+    private void onlineRetrieval() {
+        Firebase comRef = new Firebase("https://places-now.firebaseio.com/locations/" + currPlaceName + "/comments");
+        comRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                for (DataSnapshot postSnapshot: snapshot.getChildren()) {
+                    Comment comment = postSnapshot.getValue(Comment.class);
+                    commentArray.add(comment);
+                    commentAdapter.notifyDataSetChanged();
+                }
+            }
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                System.out.println("The read failed: " + firebaseError.getMessage());
+            }
+
+
+        });
     }
 
     private void displayPopup() {
