@@ -89,7 +89,7 @@
                 android:textColor="#FFF"
                 android:backgroundTint="@color/colorPrimary"
                 android:onClick="transitionToInfo"
-                android:text="Details >"/>
+                android:text="Details ▶"/>
 
         </LinearLayout>
     </LinearLayout>
