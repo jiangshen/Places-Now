@@ -116,7 +116,7 @@ public class DataManager {
 
 
 
-    public static ArrayList<Comment> recieveComments(String name) {
+    public static ArrayList<Comment> receiveComments(String name) {
         Firebase comRef = new Firebase(mRef + "/location" + name + "/comments");
 
         final ArrayList<Comment> comList = new ArrayList<>();
