@@ -123,17 +123,12 @@ public class DataManager {
 
         comRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                comList.add(dataSnapshot.getValue(Comment.class));
-                Log.d("TAG", "Value is: " + dataSnapshot.getValue(Comment.class));
+            public void onDataChange(DataSnapshot snapshot) {
+                System.out.println(snapshot.getValue());
             }
-
             @Override
-            public void onCancelled(FirebaseError error) {
-                // Failed to read value
-                Log.w("TAG", "Failed to read value." + error.toString());
+            public void onCancelled(FirebaseError firebaseError) {
+                System.out.println("The read failed: " + firebaseError.getMessage());
             }
         });
 //        comRef.addValueEventListener(new ValueEventListener() {
