@@ -77,6 +77,8 @@ public class Info extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         populateListView();
+
+//        Log.d("APPLE", DataManager.recieveComments(currPlaceName).toString());
     }
 
     private void populateListView() {
