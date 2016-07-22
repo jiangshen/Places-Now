@@ -2,5 +2,5 @@
     <string name="app_name">Places Now</string>
     <string name="title_activity_map_main">Places Now</string>
     <string name="title_activity_info">Details</string>
-    <string name="app_info">\nThe beach in Barceloneta is crowded?\nYour favorite basketball court is full?\nYou’ll know before you even leave your door\n</string>
+    <string name="app_info">\The beach in Barceloneta is crowded?\nYour favorite basketball court is full?\nYou’ll know before you even leave your door\n</string>
 </resources>
