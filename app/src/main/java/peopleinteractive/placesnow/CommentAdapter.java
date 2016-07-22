@@ -13,8 +13,11 @@ import java.util.List;
  * Created by williamcheng on 7/21/16.
  */
 public class CommentAdapter extends ArrayAdapter<Comment> {
+    private boolean toggleUp;
+    private boolean toggleDown;
     public CommentAdapter(Context context, int resource, List<Comment> comments) {
         super(context, resource, comments);
+
     }
 
     @Override
@@ -25,8 +28,10 @@ public class CommentAdapter extends ArrayAdapter<Comment> {
             vi = LayoutInflater.from(getContext());
             v = vi.inflate(R.layout.comment_list, null);
         }
-        Comment c = getItem(position);
+        final Comment c = getItem(position);
         if (c != null) {
+            toggleUp = false;
+            toggleDown = false;
             TextView body = (TextView) v.findViewById(R.id.body);
             TextView timeStamp = (TextView) v.findViewById(R.id.time_stamp);
             TextView score = (TextView) v.findViewById(R.id.score);
@@ -40,6 +45,44 @@ public class CommentAdapter extends ArrayAdapter<Comment> {
             }
             if (score != null) {
                 score.setText(Integer.toString(c.getScore()));
+            }
+            if (upVote != null) {
+                upVote.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        if (!toggleUp) {
+                            c.addToScore();
+                            toggleUp = true;
+                        }
+                        if (toggleUp) {
+                            c.minusToScore();
+                            toggleUp = false;
+                        }
+                        if (toggleDown) {
+                            c.addToScore();
+                            c.addToScore();
+                            toggleUp = true;
+                            toggleDown = false;
+                        }
+                    }
+                });
+                downVote.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        if (!toggleDown) {
+                            c.minusToScore();
+                            toggleDown = true;
+                        }
+                        if (toggleDown) {
+                            c.addToScore();
+                            toggleDown = false;
+                        }
+                        if (toggleUp) {
+                            c.minusToScore();
+                            c.minusToScore();
+                            toggleDown = true;
+                            toggleUp = false;
+                        }
+                    }
+                });
             }
         }
         return v;
