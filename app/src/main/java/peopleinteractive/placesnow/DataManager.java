@@ -65,10 +65,34 @@ public class DataManager {
         });
     }
 
-    public static void addComment(final String name, String comment) {
+    public static void addComment(final String name, Comment comment) {
         Firebase comRef = new Firebase(mRef + "locations/" + name + "/comments");
 
-        comRef.push().setValue(comment, new Firebase.CompletionListener() {
+        Firebase unique = comRef.push();
+
+        unique.child("time").setValue(comment.getTime(), new Firebase.CompletionListener() {
+            @Override
+            public void onComplete(FirebaseError firebaseError, Firebase firebase) {
+                if (firebaseError != null) {
+                    System.out.println("Data could not be saved. " + firebaseError.getMessage());
+                } else {
+                    System.out.println("Data saved successfully.");
+                }
+            }
+        });
+
+        unique.child("info").setValue(comment.getInfo(), new Firebase.CompletionListener() {
+            @Override
+            public void onComplete(FirebaseError firebaseError, Firebase firebase) {
+                if (firebaseError != null) {
+                    System.out.println("Data could not be saved. " + firebaseError.getMessage());
+                } else {
+                    System.out.println("Data saved successfully.");
+                }
+            }
+        });
+
+        unique.child("score").setValue(comment.getScore(), new Firebase.CompletionListener() {
             @Override
             public void onComplete(FirebaseError firebaseError, Firebase firebase) {
                 if (firebaseError != null) {
