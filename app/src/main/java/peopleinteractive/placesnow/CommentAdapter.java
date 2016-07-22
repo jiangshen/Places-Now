@@ -63,7 +63,7 @@ public class CommentAdapter extends ArrayAdapter<Comment> {
                         } else if (!toggleUp && !toggleDown) {
                             c.minusToScore();
                         }
-
+                        notifyDataSetChanged();
                         Log.d("SCORE", Integer.toString(c.getScore()));
                         Log.d("TOGGLEUP", Boolean.toString(toggleUp));
                         Log.d("TOGGLEDOWN", Boolean.toString(toggleDown));
@@ -87,7 +87,7 @@ public class CommentAdapter extends ArrayAdapter<Comment> {
                             c.addToScore();
                             //unhighlight toggleDown
                         }
-
+                        notifyDataSetChanged();
                         Log.d("SCORE", Integer.toString(c.getScore()));
                         Log.d("TOGGLEUP", Boolean.toString(toggleUp));
                         Log.d("TOGGLEDOWN", Boolean.toString(toggleDown));
