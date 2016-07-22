@@ -33,6 +33,9 @@ import java.util.ArrayList;
 public class Info extends AppCompatActivity {
 
     List<Comment> commentArray = new ArrayList<Comment>();
+
+    private CommentAdapter commentAdapter;
+
     private String currPlaceName;
     private double currLat;
     private double currLng;
@@ -76,10 +79,13 @@ public class Info extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ListView comments = (ListView) findViewById(R.id.commentListView);
-        List<Comment> commentArray = new ArrayList<Comment>();
+        List<Comment> commentArray = new ArrayList<>();
+
         commentArray.add(new Comment("trolololol"));
-        CommentAdapter commentAdapter = new CommentAdapter(this, R.layout.comment_list, commentArray);
+
+        commentAdapter = new CommentAdapter(this, R.layout.comment_list, commentArray);
         comments.setAdapter(commentAdapter);
+        commentAdapter.notifyDataSetChanged();
     }
 
     private void onlineUpdate() {

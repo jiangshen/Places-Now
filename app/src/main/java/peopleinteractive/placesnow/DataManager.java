@@ -39,6 +39,7 @@ public class DataManager {
         Firebase nameRef = locRef.child(toAdd.getName());
 
         Log.d("FIRE", toAdd.getName() + " aaaaa");
+
         // .child(toAdd.LL.toString()) for when we put LatLng back into this
         nameRef.child("description").setValue(toAdd.getDescription(), new Firebase.CompletionListener() {
             @Override
