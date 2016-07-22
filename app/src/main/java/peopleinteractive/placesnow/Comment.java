@@ -1,6 +1,7 @@
 package peopleinteractive.placesnow;
 
 import java.text.SimpleDateFormat;
+import java.util.Comparator;
 import java.util.Date;
 
 /**
@@ -36,6 +37,8 @@ public class Comment {
     public String getInfo() {
         return info;
     }
+
+    public void setScore(int score) { this.score = score; }
 
     @Override
     public String toString() {

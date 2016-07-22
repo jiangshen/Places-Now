@@ -81,10 +81,33 @@ public class Info extends AppCompatActivity {
 
     private void populateListView() {
         ListView comments = (ListView) findViewById(R.id.commentListView);
-        
+
         commentAdapter = new CommentAdapter(this, R.layout.comment_list, commentArray);
         comments.setAdapter(commentAdapter);
 
+    }
+
+    public void sortByScore(View view) {
+        Log.d("sorting by score", "in method");
+        if (commentArray == null) {}
+        else {
+            for (int i = 0; i < commentArray.size(); i++) {
+                int lastSortedIndex = i;
+                while (i > 0 && (commentArray.get(i).getScore() - commentArray.get(i-1).getScore() < 0)) {
+                    int score = commentArray.get(i).getScore();
+                    commentArray.get(i).setScore(commentArray.get(i-1).getScore());
+                    commentArray.get(i-1).setScore(score);
+                    i--;
+                }
+                i = lastSortedIndex;
+            }
+        }
+        populateListView();
+    }
+
+    public void sortByRank() {
+
+        populateListView();
     }
 
     private void onlineUpdate() {

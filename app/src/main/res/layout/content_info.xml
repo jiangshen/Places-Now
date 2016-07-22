@@ -28,18 +28,30 @@
                 android:layout_gravity="center_horizontal"
                 android:textColor="#616161" />
 
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="400dp"
-                android:layout_margin="8dp">
+            <Button
+                android:layout_width="110dp"
+                android:layout_height="36dp"
+                android:text="Sort By Date"
+                android:id="@+id/button2"
+                android:layout_gravity="right"
+                android:textColor="@color/colorText"
+                android:background="@color/colorPrimary" />
+
+            <Button
+                android:layout_width="110dp"
+                android:layout_height="30dp"
+                android:text="Sort By Rank"
+                android:id="@+id/button3"
+                android:layout_gravity="right"
+                android:textColor="@color/colorText"
+                android:background="@color/colorPrimary"
+                android:onClick="sortByScore" />
 
             <ListView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/commentListView"
                 android:smoothScrollbar="false" />
-
-            </android.support.v7.widget.CardView>
 
         </LinearLayout>
 
