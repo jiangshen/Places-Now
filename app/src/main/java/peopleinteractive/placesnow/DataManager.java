@@ -136,5 +136,6 @@ public class DataManager {
             public void onCancelled(FirebaseError firebaseError) {
             }
         });
+        return comList;
     }
 }
