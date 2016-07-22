@@ -1,5 +1,7 @@
 package peopleinteractive.placesnow;
 
+import android.util.Log;
+
 import java.text.SimpleDateFormat;
 import java.util.Comparator;
 import java.util.Date;
@@ -65,5 +67,18 @@ public class Comment {
     @Override
     public String toString() {
         return getScore() + "\n" + getInfo() + "\n" + getTime();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o != null && o instanceof Comment) {
+            Comment c = (Comment) o;
+            if(this.getInfo() != null && c.getInfo() != null && c.getInfo() != "" && this.getInfo() != "") {
+                Log.d("this", this.getInfo());
+                Log.d("that", c.getInfo());
+                return this.getInfo().equals(c.getInfo());
+            }
+        }
+        return false;
     }
 }

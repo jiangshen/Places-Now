@@ -49,6 +49,8 @@ public class Info extends AppCompatActivity {
 
     private TextView locationName;
 
+    private ListView comments;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         toggleUp = false;
@@ -57,6 +59,8 @@ public class Info extends AppCompatActivity {
         setContentView(R.layout.activity_info);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        comments = (ListView) findViewById(R.id.commentListView);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -75,10 +79,11 @@ public class Info extends AppCompatActivity {
         currPlaceName = intent.getStringExtra("PlaceName");
         currLat = intent.getDoubleExtra("Lat", 0.0);
         currLng = intent.getDoubleExtra("Lng", 0.0);
-        
-        onlineRetrieval();
 
-        onlineUpdate();
+//        onlineUpdate();
+
+        onlineRetrieval();
+        Log.d("Retrieved Once", "yep");
 
         locationName = (TextView) findViewById(R.id.locationName);
         locationName.setText(currPlaceName);
@@ -89,8 +94,7 @@ public class Info extends AppCompatActivity {
     }
 
     private void populateListView() {
-        ListView comments = (ListView) findViewById(R.id.commentListView);
-
+        Log.d("FKKK", commentArray.toString());
         commentAdapter = new CommentAdapter(this, R.layout.comment_list, commentArray);
         comments.setAdapter(commentAdapter);
 
@@ -115,13 +119,10 @@ public class Info extends AppCompatActivity {
     }
 
     public void sortByDate(View view) {
-
-
         populateListView();
     }
 
     public void sortByRank() {
-
         populateListView();
     }
 
@@ -136,9 +137,12 @@ public class Info extends AppCompatActivity {
             public void onDataChange(DataSnapshot snapshot) {
                 for (DataSnapshot postSnapshot: snapshot.getChildren()) {
                     Comment comment = postSnapshot.getValue(Comment.class);
-                    commentArray.add(comment);
-                    commentAdapter.notifyDataSetChanged();
+                    if (!commentArray.contains(comment)) {
+                        commentArray.add(comment);
+                    }
                 }
+                Log.d("FFFF", commentArray.toString());
+                commentAdapter.notifyDataSetChanged();
             }
             @Override
             public void onCancelled(FirebaseError firebaseError) {
@@ -171,12 +175,11 @@ public class Info extends AppCompatActivity {
 
                 DataManager.addComment(currPlaceName, new Comment(comment));
 
-                commentArray.add(new Comment(comment));
-                commentAdapter.notifyDataSetChanged();
+//                commentArray.add(new Comment(comment));
+//                commentAdapter.notifyDataSetChanged();
 
                 populateListView();
-//                Log.d("COMMENT", comment);
-//                Log.d("all comments", commentArray.toString());
+
                 dialog.cancel();
             }
         })

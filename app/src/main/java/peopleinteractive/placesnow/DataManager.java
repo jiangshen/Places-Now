@@ -73,11 +73,11 @@ public class DataManager {
     }
 
     public static void addComment(final String name, Comment comment) {
-        if(!comment.equals("")) {
+        //if(!comment.equals("")) {
             Firebase comRef = new Firebase(mRef + "locations/" + name + "/comments");
 
             Firebase unique = comRef.push();
-
+            Log.d("ran through add Comment", "");
             unique.child("time").setValue(comment.getTime(), new Firebase.CompletionListener() {
                 @Override
                 public void onComplete(FirebaseError firebaseError, Firebase firebase) {
@@ -133,7 +133,7 @@ public class DataManager {
                     }
                 }
             });
-        }
+        //}
     }
 
 
