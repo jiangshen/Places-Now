@@ -1,5 +1,6 @@
 package peopleinteractive.placesnow;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -55,8 +56,9 @@ public class Info extends AppCompatActivity {
     private TextView locationName;
 
     public static final int MEDIA_TYPE_IMAGE = 1;
-    private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
+    private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 0;
     private ImageView iv;
+    private Comment c;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,7 +98,7 @@ public class Info extends AppCompatActivity {
     private void populateListView() {
         ListView comments = (ListView) findViewById(R.id.commentListView);
         
-        commentAdapter = new CommentAdapter(this, R.layout.comment_list, commentArray);
+        commentAdapter = new CommentAdapter(this, R.layout.image_comment_list, commentArray);
         comments.setAdapter(commentAdapter);
 
     }
@@ -105,15 +107,22 @@ public class Info extends AppCompatActivity {
         DataManager.addLocation(currPlaceName);
     }
 
+    /** Create a file Uri for saving an image or video */
     private static Uri getOutputMediaFileUri(int type){
         return Uri.fromFile(getOutputMediaFile(type));
     }
 
+    /** Create a File for saving an image or video */
     private static File getOutputMediaFile(int type){
+        // To be safe, you should check that the SDCard is mounted
+        // using Environment.getExternalStorageState() before doing this.
 
         File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_PICTURES), "MyCameraApp");
+        // This location works best if you want the created images to be shared
+        // between applications and persist after your app has been uninstalled.
 
+        // Create the storage directory if it does not exist
         if (! mediaStorageDir.exists()){
             if (! mediaStorageDir.mkdirs()){
                 Log.d("MyCameraApp", "failed to create directory");
@@ -121,6 +130,7 @@ public class Info extends AppCompatActivity {
             }
         }
 
+        // Create a media file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         File mediaFile;
         if (type == MEDIA_TYPE_IMAGE){
@@ -148,10 +158,24 @@ public class Info extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int id) {
                 dialog.cancel();
             }
-        }).setNeutralButton("Add Picture", new DialogInterface.OnClickListener() {
+        }).setNeutralButton("Add a Picture and Submit", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int id) {
+                String comment = editText.getText().toString();
+
+                DataManager.addComment(currPlaceName, new Comment(comment));
+
+                c = new Comment(comment);
+
+                commentArray.add(c);
+                commentAdapter.notifyDataSetChanged();
+
+                populateListView();
+                Log.d("COMMENT", comment);
+                Log.d("all comments", commentArray.toString());
+
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(intent, 0);
                 dialog.cancel();
             }})
         .setNegativeButton("Submit", new DialogInterface.OnClickListener() {
@@ -180,8 +204,14 @@ public class Info extends AppCompatActivity {
     protected void onActivityResult(int requestCode,int resultCode, Intent data) {
        super.onActivityResult(requestCode, resultCode, data);
 
-        Bitmap bp = (Bitmap) data.getExtras().get("data");
-        iv.setImageBitmap(bp);
+        if (resultCode!= RESULT_CANCELED) {
+            if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE && data != null)
+            {
+                Bundle extras = data.getExtras();
+                Bitmap imageBitmap = (Bitmap) extras.get("data");
+                c.setPic(imageBitmap);
+            }
+        }
     }
 
     @Override

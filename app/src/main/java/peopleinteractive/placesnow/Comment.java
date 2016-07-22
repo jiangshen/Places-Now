@@ -1,5 +1,8 @@
 package peopleinteractive.placesnow;
 
+import android.graphics.Bitmap;
+import android.widget.ImageView;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -12,6 +15,7 @@ public class Comment {
     private int score;
     private boolean toggleUp;
     private boolean toggleDown;
+    private Bitmap pic;
 
     Comment(String info) {
         score = 0;
@@ -22,6 +26,13 @@ public class Comment {
         time = sdf.format(date);
         toggleUp = false;
         toggleDown = false;
+    }
+
+    public void setPic(Bitmap bm) {
+        pic = bm;
+    }
+    public Bitmap getPic() {
+        return pic;
     }
 
     public void addToScore() {
