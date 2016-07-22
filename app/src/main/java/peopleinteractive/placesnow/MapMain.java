@@ -362,7 +362,6 @@ public class MapMain extends FragmentActivity implements OnMapReadyCallback, Loc
 
             findPlaces = service.findPlaces(m_Location.getLatitude(), m_Location.getLongitude(), searchQuery);
 
-            if (findPlaces != null) {
                 m_Places = new String[findPlaces.size()];
                 m_URL = new String[findPlaces.size()];
 
@@ -375,22 +374,8 @@ public class MapMain extends FragmentActivity implements OnMapReadyCallback, Loc
                     m_Places[i] = placeDetail.getName();
                     m_URL[i] = placeDetail.getIcon();
                 }
-                return (ArrayList<Place>)findPlaces;
-            } else {
-                android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(MapMain.this, R.style.DialogStyle);
-                LayoutInflater inflater = MapMain.this.getLayoutInflater();
-
-                builder.setTitle("Location Does Not Exist.")
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        })
-                        .show();
-            }
         }
-        return null;
+        return (ArrayList<Place>)findPlaces;
     }
 
     public void transitionToInfo(View view) {
