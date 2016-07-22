@@ -93,7 +93,7 @@ public class Info extends AppCompatActivity {
         else {
             for (int i = 0; i < commentArray.size(); i++) {
                 int lastSortedIndex = i;
-                while (i > 0 && (commentArray.get(i).getScore() - commentArray.get(i-1).getScore() < 0)) {
+                while (i > 0 && (commentArray.get(i).getScore() - commentArray.get(i-1).getScore() > 0)) {
                     int score = commentArray.get(i).getScore();
                     commentArray.get(i).setScore(commentArray.get(i-1).getScore());
                     commentArray.get(i-1).setScore(score);
@@ -102,6 +102,12 @@ public class Info extends AppCompatActivity {
                 i = lastSortedIndex;
             }
         }
+        populateListView();
+    }
+
+    public void sortByDate(View view) {
+
+
         populateListView();
     }
 
