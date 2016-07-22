@@ -73,6 +73,8 @@ public class Info extends AppCompatActivity {
         currLat = intent.getDoubleExtra("Lat", 0.0);
         currLng = intent.getDoubleExtra("Lng", 0.0);
 
+        Log.d("APPLE", DataManager.receiveComments(currPlaceName).toString());
+
         onlineUpdate();
 
         locationName = (TextView) findViewById(R.id.locationName);
@@ -81,8 +83,6 @@ public class Info extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         populateListView();
-
-//        Log.d("APPLE", DataManager.recieveComments(currPlaceName).toString());
     }
 
     private void populateListView() {
@@ -152,8 +152,8 @@ public class Info extends AppCompatActivity {
                 commentAdapter.notifyDataSetChanged();
 
                 populateListView();
-                Log.d("COMMENT", comment);
-                Log.d("all comments", commentArray.toString());
+//                Log.d("COMMENT", comment);
+//                Log.d("all comments", commentArray.toString());
                 dialog.cancel();
             }
         })

@@ -60,7 +60,7 @@ public class DataManager {
             }
         });
 
-        nameRef.child("comments").setValue(toAdd.getComments(), new Firebase.CompletionListener() {
+        nameRef.child("comments").push().setValue(toAdd.getComments(), new Firebase.CompletionListener() {
             @Override
             public void onComplete(FirebaseError firebaseError, Firebase firebase) {
                 if (firebaseError != null) {
@@ -117,14 +117,21 @@ public class DataManager {
 
 
     public static ArrayList<Comment> receiveComments(String name) {
-        Firebase comRef = new Firebase(mRef + "/location" + name + "/comments");
+        Firebase comRef = new Firebase(mRef + "locations/" + name + "/comments");
 
         final ArrayList<Comment> comList = new ArrayList<>();
+
+        Log.d("APPLE", mRef + "locations/" + name + "/comments");
 
         comRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                System.out.println(snapshot.getValue());
+                Log.d("POOP", snapshot.getValue().toString());
+                for (DataSnapshot postSnapshot: snapshot.getChildren()) {
+//                    Log.d("POOPER", postSnapshot.getValue(Comment.class).toString());
+                    Comment comment = postSnapshot.getValue(Comment.class);
+//                    comList.add(comment);
+                }
             }
             @Override
             public void onCancelled(FirebaseError firebaseError) {
