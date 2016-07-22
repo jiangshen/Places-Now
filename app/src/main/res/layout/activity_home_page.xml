@@ -37,9 +37,9 @@
             android:layout_gravity="center_horizontal"
             android:layout_weight="0.05"
             android:onClick="getStarted"
-            android:textColor="@color/textPrimary"
+            android:textColor="@color/colorText"
             android:clickable="true"
-            android:background="@color/colorPrimaryLight" />
+            android:background="@color/colorPrimary" />
     </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>
