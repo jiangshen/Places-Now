@@ -74,8 +74,6 @@ public class Info extends AppCompatActivity {
         locationName = (TextView) findViewById(R.id.locationName);
         locationName.setText(currPlaceName);
 
-        Log.d("YO", currPlaceName);
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ListView comments = (ListView) findViewById(R.id.commentListView);
@@ -89,7 +87,6 @@ public class Info extends AppCompatActivity {
     }
 
     private void onlineUpdate() {
-        Log.d("YOYO", "STARTED");
         DataManager.addLocation(currPlaceName);
     }
 
@@ -112,6 +109,9 @@ public class Info extends AppCompatActivity {
         .setNegativeButton("Submit", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 String comment = editText.getText().toString();
+
+                DataManager.addComment(currPlaceName, comment);
+
                 commentArray.add(new Comment(comment));
                 Log.d("COMMENT", comment);
                 Log.d("all comments", commentArray.toString());
