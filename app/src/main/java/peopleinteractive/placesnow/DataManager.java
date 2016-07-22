@@ -2,11 +2,14 @@
 package peopleinteractive.placesnow;
 import com.firebase.client.AuthData;
 import com.firebase.client.ChildEventListener;
-import com.firebase.client.DataSnapshot;
+import com.google.firebase.database.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
-import com.firebase.client.Query;
-import com.firebase.client.ValueEventListener;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 
 
 import android.location.Criteria;
@@ -16,6 +19,7 @@ import android.location.LocationManager;
 import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,6 +40,8 @@ public class DataManager {
     public static EncloseLocation currentLoc;
 
     public static List<EncloseLocation> locList;
+
+    static FirebaseDatabase db = FirebaseDatabase.getInstance();
 
 
     public static void addLocation(final String name) {
@@ -114,43 +120,59 @@ public class DataManager {
     }
 
 
+
     public static ArrayList<Comment> recieveComments(String name) {
-        Firebase comRef = new Firebase(mRef + "locations/" + name + "/comments");
+        DatabaseReference mDatabase = db.getReference().child("location").child(name).child("comments");
 
         final ArrayList<Comment> comList = new ArrayList<>();
 
-        comRef.addValueEventListener(new ValueEventListener() {
+        mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot snapshot) {
-                System.out.println("There are " + snapshot.getChildrenCount() + " blog posts");
-                for (DataSnapshot postSnapshot: snapshot.getChildren()) {
-                    Comment comment = postSnapshot.getValue(Comment.class);
-                    comList.add(comment);
-                }
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                comList.add(dataSnapshot.getValue(Comment.class));
+                Log.d("TAG", "Value is: " + dataSnapshot.getValue(Comment.class));
             }
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-                System.out.println("The read failed: " + firebaseError.getMessage());
-            }
-        });
 
-        comRef.addChildEventListener(new ChildEventListener() {
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                for (final DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Comment comment = snapshot.getValue(Comment.class);
-                    comList.add(comment);
-                }
-            }
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-            }
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-            }
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-            }
-            public void onCancelled(FirebaseError firebaseError) {
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("TAG", "Failed to read value.", error.toException());
             }
         });
+//        comRef.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot snapshot) {
+//                System.out.println("There are " + snapshot.getChildrenCount() + " blog posts");
+//                for (DataSnapshot postSnapshot: snapshot.getChildren()) {
+//                    Comment comment = postSnapshot.getValue(Comment.class);
+//                    comList.add(comment);
+//                }
+//            }
+//            @Override
+//            public void onCancelled(FirebaseError firebaseError) {
+//                System.out.println("The read failed: " + firebaseError.getMessage());
+//            }
+//        });
+
+//        comRef.addChildEventListener(new ChildEventListener() {
+//            @Override
+//            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+//                for (final DataSnapshot snapshot : dataSnapshot.getChildren()) {
+//                    Comment comment = snapshot.getValue(Comment.class);
+//                    comList.add(comment);
+//                }
+//            }
+//            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+//            }
+//            public void onChildRemoved(DataSnapshot dataSnapshot) {
+//            }
+//            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+//            }
+//            public void onCancelled(FirebaseError firebaseError) {
+//            }
+//        });
         return comList;
     }
 }

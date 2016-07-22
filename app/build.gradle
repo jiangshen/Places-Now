@@ -32,4 +32,5 @@ dependencies {
 
     //originally 9.2.1, getMap() function is removed USE 8.4.0
     compile 'com.google.android.gms:play-services:8.4.0'
+    compile 'com.google.firebase:firebase-database:9.2.1'
 }
