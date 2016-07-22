@@ -14,6 +14,9 @@ public class Comment {
     private boolean toggleUp;
     private boolean toggleDown;
 
+
+    Comment() {}
+
     Comment(String info) {
         score = 0;
         this.info = info;
