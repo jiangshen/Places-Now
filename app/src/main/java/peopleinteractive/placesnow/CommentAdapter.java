@@ -1,5 +1,6 @@
 package peopleinteractive.placesnow;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,38 +50,47 @@ public class CommentAdapter extends ArrayAdapter<Comment> {
             if (upVote != null) {
                 upVote.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
-                        if (!toggleUp) {
-                            c.addToScore();
-                            toggleUp = true;
-                        }
-                        if (toggleUp) {
-                            c.minusToScore();
-                            toggleUp = false;
-                        }
-                        if (toggleDown) {
+                        toggleUp = !toggleUp;
+
+                        if (toggleUp && toggleDown) {
                             c.addToScore();
                             c.addToScore();
-                            toggleUp = true;
                             toggleDown = false;
+                            //highlight up
+                            //unhighlight down
+                        } else if (toggleUp && !toggleDown) {
+                            c.addToScore();
+                        } else if (!toggleUp && !toggleDown) {
+                            c.minusToScore();
                         }
+
+                        Log.d("SCORE", Integer.toString(c.getScore()));
+                        Log.d("TOGGLEUP", Boolean.toString(toggleUp));
+                        Log.d("TOGGLEDOWN", Boolean.toString(toggleDown));
+
                     }
                 });
                 downVote.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
-                        if (!toggleDown) {
-                            c.minusToScore();
-                            toggleDown = true;
-                        }
-                        if (toggleDown) {
-                            c.addToScore();
-                            toggleDown = false;
-                        }
-                        if (toggleUp) {
+                        toggleDown = !toggleDown;
+                        if (toggleDown && toggleUp) {
                             c.minusToScore();
                             c.minusToScore();
-                            toggleDown = true;
                             toggleUp = false;
+                            //highlight toggleDown
+                            //unhighlight toggleUp
+
+                        } else if (toggleDown && !toggleUp) {
+                            c.minusToScore();
+                            //highlight toggleDown
+                        } else if (!toggleDown && !toggleUp) {
+                            c.addToScore();
+                            //unhighlight toggleDown
                         }
+
+                        Log.d("SCORE", Integer.toString(c.getScore()));
+                        Log.d("TOGGLEUP", Boolean.toString(toggleUp));
+                        Log.d("TOGGLEDOWN", Boolean.toString(toggleDown));
                     }
                 });
             }
