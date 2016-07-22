@@ -16,7 +16,7 @@ public class Comment {
         this.info = info;
         Long timeLong = System.currentTimeMillis()/1000;
         SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy HH:mm");
-        Date date = new Date(timeLong);
+        Date date = new Date();
         time = sdf.format(date);
     }
 
