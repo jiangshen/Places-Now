@@ -83,7 +83,6 @@ public class Info extends AppCompatActivity {
 
         commentAdapter = new CommentAdapter(this, R.layout.comment_list, commentArray);
         comments.setAdapter(commentAdapter);
-        commentAdapter.notifyDataSetChanged();
     }
 
     private void onlineUpdate() {
@@ -113,6 +112,7 @@ public class Info extends AppCompatActivity {
                 DataManager.addComment(currPlaceName, new Comment(comment));
 
                 commentArray.add(new Comment(comment));
+                commentAdapter.notifyDataSetChanged();
                 Log.d("COMMENT", comment);
                 Log.d("all comments", commentArray.toString());
                 dialog.cancel();
