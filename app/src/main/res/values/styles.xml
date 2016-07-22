@@ -33,6 +33,7 @@
         <item name="android:textColorPrimary">@color/textSecondary</item>
         <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
         <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:button">@color/colorPrimary</item>
     </style>
 
 </resources>

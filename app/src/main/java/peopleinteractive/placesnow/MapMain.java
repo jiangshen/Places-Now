@@ -21,6 +21,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -360,32 +361,58 @@ public class MapMain extends FragmentActivity implements OnMapReadyCallback, Loc
             Log.d("FML", searchQuery);
 
             findPlaces = service.findPlaces(m_Location.getLatitude(), m_Location.getLongitude(), searchQuery);
-            m_Places = new String[findPlaces.size()];
-            m_URL = new String[findPlaces.size()];
 
-            for (int i = 0; i < findPlaces.size(); i++) {
+            if (findPlaces != null) {
+                m_Places = new String[findPlaces.size()];
+                m_URL = new String[findPlaces.size()];
 
-                Place placeDetail = findPlaces.get(i);
-                placeDetail.getIcon();
+                for (int i = 0; i < findPlaces.size(); i++) {
 
-                System.out.println(placeDetail.getName());
-                m_Places[i] =placeDetail.getName();
-                m_URL[i] =placeDetail.getIcon();
+                    Place placeDetail = findPlaces.get(i);
+                    placeDetail.getIcon();
+
+                    System.out.println(placeDetail.getName());
+                    m_Places[i] = placeDetail.getName();
+                    m_URL[i] = placeDetail.getIcon();
+                }
+                return (ArrayList<Place>)findPlaces;
+            } else {
+                android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(MapMain.this, R.style.DialogStyle);
+                LayoutInflater inflater = MapMain.this.getLayoutInflater();
+
+                builder.setTitle("Location Does Not Exist.")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        })
+                        .show();
             }
         }
-        return (ArrayList<Place>)findPlaces;
+        return null;
     }
 
     public void transitionToInfo(View view) {
-        if (currPlaceName != null || currPlaceName != "") {
+        if (m_Location != null) {
+            Log.d("location not null", m_Location.toString());
             Intent myIntent = new Intent(MapMain.this, Info.class);
             myIntent.putExtra("PlaceName", currPlaceName);
             myIntent.putExtra("Lat", currMarker.getPosition().longitude);
             myIntent.putExtra("Lng", currMarker.getPosition().latitude);
             startActivity(myIntent);
         } else {
-            Toast.makeText(getApplicationContext(), "Select A Location!",
-                    Toast.LENGTH_SHORT).show();
+            android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(MapMain.this, R.style.DialogStyle);
+            LayoutInflater inflater = MapMain.this.getLayoutInflater();
+
+            builder.setTitle("Select A Location")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                })
+                .show();
         }
     }
 }

@@ -69,12 +69,13 @@ public class PlacesService {
 
                     arrayList.add(place);
                 } catch (Exception e) {
-                    Log.d("PlacesService", e.getMessage());
+                    Log.d("Places Service", e.getMessage());
                 }
             }
             return arrayList;
         } catch (JSONException ex) {
             Logger.getLogger(PlacesService.class.getName()).log(Level.SEVERE, null, ex);
+
         }
         return null;
     }
