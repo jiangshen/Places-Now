@@ -16,8 +16,6 @@
             android:id="@+id/body"
             android:text="Comments" android:textStyle="bold"
             android:textSize="12pt"
-            android:textAlignment="center"
-            android:gravity="top"
             android:layout_weight="1"
             android:typeface="monospace"/>
         <TextView
@@ -27,7 +25,6 @@
             android:text="Time" android:textStyle="bold"
             android:textSize="8pt"
             android:layout_weight="1"
-            android:gravity="top"
             android:typeface="monospace"/>
     </LinearLayout>
     <LinearLayout
@@ -42,10 +39,13 @@
             android:background="@drawable/up_arrow"
             />
         <TextView
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/score"
-            android:text="Votes" android:textStyle="bold"
+            android:gravity="center_horizontal"
+            android:text="Votes"
+            android:textStyle="bold"
+
             android:textSize="6pt"
             android:typeface="monospace"/>
         <Button
