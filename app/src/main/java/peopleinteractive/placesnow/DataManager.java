@@ -23,8 +23,9 @@ import java.util.List;
  */
 public class DataManager {
 
+    private static final String mRef = "https://places-now.firebaseio.com/";
 
-    private static final Firebase REF = new Firebase("https://places-now.firebaseio.com/");
+    private static final Firebase REF = new Firebase(mRef);
 
     public static EncloseLocation currentLoc;
 
@@ -52,7 +53,7 @@ public class DataManager {
             }
         });
 
-        nameRef.child("comments").push().setValue(toAdd.getComments(), new Firebase.CompletionListener() {
+        nameRef.child("comments").setValue(toAdd.getComments(), new Firebase.CompletionListener() {
             @Override
             public void onComplete(FirebaseError firebaseError, Firebase firebase) {
                 if (firebaseError != null) {
@@ -62,5 +63,22 @@ public class DataManager {
                 }
             }
         });
+    }
+
+    public static void addComment(final String name, String comment) {
+        Firebase comRef = new Firebase(mRef + "locations/" + name + "/comments");
+
+        comRef.push().setValue(comment, new Firebase.CompletionListener() {
+            @Override
+            public void onComplete(FirebaseError firebaseError, Firebase firebase) {
+                if (firebaseError != null) {
+                    System.out.println("Data could not be saved. " + firebaseError.getMessage());
+                } else {
+                    System.out.println("Data saved successfully.");
+                }
+            }
+        });
+
+
     }
 }
