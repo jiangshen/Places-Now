@@ -32,6 +32,8 @@ import java.util.ArrayList;
 
 public class Info extends AppCompatActivity {
 
+    //private DatabaseReference mDatabase;
+
     List<Comment> commentArray = new ArrayList<Comment>();
 
     private CommentAdapter commentAdapter;
@@ -63,6 +65,8 @@ public class Info extends AppCompatActivity {
         });
 
         Firebase.setAndroidContext(this);
+
+       // mDatabase = FirebaseDatabase.getInstance().getReference();
 
         Intent intent = getIntent();
         currPlaceName = intent.getStringExtra("PlaceName");
