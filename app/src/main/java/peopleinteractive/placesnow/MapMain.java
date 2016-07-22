@@ -25,6 +25,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.firebase.client.Firebase;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -376,11 +377,15 @@ public class MapMain extends FragmentActivity implements OnMapReadyCallback, Loc
     }
 
     public void transitionToInfo(View view) {
-        Intent myIntent = new Intent(MapMain.this, Info.class);
-        myIntent.putExtra("PlaceName", currPlaceName);
-        myIntent.putExtra("Lat", currMarker.getPosition().longitude);
-        myIntent.putExtra("Lng", currMarker.getPosition().latitude);
-        startActivity(myIntent);
+        if (currPlaceName != null || currPlaceName != "") {
+            Intent myIntent = new Intent(MapMain.this, Info.class);
+            myIntent.putExtra("PlaceName", currPlaceName);
+            myIntent.putExtra("Lat", currMarker.getPosition().longitude);
+            myIntent.putExtra("Lng", currMarker.getPosition().latitude);
+            startActivity(myIntent);
+        } else {
+            Toast.makeText(getApplicationContext(), "Select A Location!",
+                    Toast.LENGTH_SHORT).show();
+        }
     }
-
 }
