@@ -18,7 +18,8 @@ public class CommentAdapter extends ArrayAdapter<Comment> {
     private boolean toggleDown;
     public CommentAdapter(Context context, int resource, List<Comment> comments) {
         super(context, resource, comments);
-
+        toggleUp = false;
+        toggleDown = false;
     }
 
     @Override
@@ -31,8 +32,6 @@ public class CommentAdapter extends ArrayAdapter<Comment> {
         }
         final Comment c = getItem(position);
         if (c != null) {
-            toggleUp = false;
-            toggleDown = false;
             TextView body = (TextView) v.findViewById(R.id.body);
             TextView timeStamp = (TextView) v.findViewById(R.id.time_stamp);
             TextView score = (TextView) v.findViewById(R.id.score);
