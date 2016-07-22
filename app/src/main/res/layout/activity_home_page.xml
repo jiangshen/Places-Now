@@ -11,8 +11,6 @@
         android:orientation="vertical" android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:weightSum="1">
-
-<<<<<<< HEAD
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,7 +22,6 @@
         android:textAlignment="center"
         android:layout_weight="0.42"
         android:textColor="@color/textSecondary" />
-=======
         <ImageView
             android:layout_width="296dp"
             android:layout_height="191dp"
@@ -32,8 +29,6 @@
             android:layout_gravity="center_horizontal"
             android:src="@drawable/places_now"
             android:layout_weight="0.13" />
->>>>>>> origin/master
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

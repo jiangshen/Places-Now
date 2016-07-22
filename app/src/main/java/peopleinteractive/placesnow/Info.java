@@ -14,11 +14,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
-<<<<<<< Updated upstream
+
 import android.widget.EditText;
-=======
+
 import android.widget.Button;
->>>>>>> Stashed changes
+
 import android.widget.ListView;
 import android.widget.PopupWindow;
 
