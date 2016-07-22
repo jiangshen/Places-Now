@@ -49,14 +49,13 @@ public class CommentAdapter extends ArrayAdapter<Comment> {
 
                         if (c.getToggleUp() && c.getToggleDown()) {
                             c.addToScore();
-                            c.addToScore();
                             c.changeToggleDown();
                             //highlight up
                             //unhighlight down
                         } else if (c.getToggleUp() && !c.getToggleDown()) {
                             c.addToScore();
                         } else if (!c.getToggleUp() && !c.getToggleDown()) {
-                            c.minusToScore();
+                            //c.minusToScore();
                         }
                         notifyDataSetChanged();
 
@@ -67,7 +66,6 @@ public class CommentAdapter extends ArrayAdapter<Comment> {
                         c.changeToggleDown();
                         if (c.getToggleDown() && c.getToggleUp()) {
                             c.minusToScore();
-                            c.minusToScore();
                             c.changeToggleUp();
                             //highlight toggleDown
                             //unhighlight toggleUp
@@ -76,7 +74,7 @@ public class CommentAdapter extends ArrayAdapter<Comment> {
                             c.minusToScore();
                             //highlight toggleDown
                         } else if (!c.getToggleDown() && !c.getToggleUp()) {
-                            c.addToScore();
+                            //c.addToScore();
                             //unhighlight toggleDown
                         }
                         notifyDataSetChanged();
