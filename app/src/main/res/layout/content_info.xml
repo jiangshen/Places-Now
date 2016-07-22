@@ -26,7 +26,7 @@
                 android:layout_centerHorizontal="true"
                 android:textSize="40sp"
                 android:layout_gravity="center_horizontal"
-                android:textColor="#616161" />
+                android:textColor="#ffffff" />
 
             <Button
                 android:layout_width="110dp"

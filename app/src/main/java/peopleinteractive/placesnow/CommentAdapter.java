@@ -14,12 +14,8 @@ import java.util.List;
  * Created by williamcheng on 7/21/16.
  */
 public class CommentAdapter extends ArrayAdapter<Comment> {
-    private boolean toggleUp;
-    private boolean toggleDown;
     public CommentAdapter(Context context, int resource, List<Comment> comments) {
         super(context, resource, comments);
-        toggleUp = false;
-        toggleDown = false;
     }
 
     @Override
@@ -49,47 +45,41 @@ public class CommentAdapter extends ArrayAdapter<Comment> {
             if (upVote != null) {
                 upVote.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
-                        toggleUp = !toggleUp;
+                        c.changeToggleUp();
 
-                        if (toggleUp && toggleDown) {
+                        if (c.getToggleUp() && c.getToggleDown()) {
                             c.addToScore();
                             c.addToScore();
-                            toggleDown = false;
+                            c.changeToggleDown();
                             //highlight up
                             //unhighlight down
-                        } else if (toggleUp && !toggleDown) {
+                        } else if (c.getToggleUp() && !c.getToggleDown()) {
                             c.addToScore();
-                        } else if (!toggleUp && !toggleDown) {
+                        } else if (!c.getToggleUp() && !c.getToggleDown()) {
                             c.minusToScore();
                         }
                         notifyDataSetChanged();
-                        Log.d("SCORE", Integer.toString(c.getScore()));
-                        Log.d("TOGGLEUP", Boolean.toString(toggleUp));
-                        Log.d("TOGGLEDOWN", Boolean.toString(toggleDown));
 
                     }
                 });
                 downVote.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
-                        toggleDown = !toggleDown;
-                        if (toggleDown && toggleUp) {
+                        c.changeToggleDown();
+                        if (c.getToggleDown() && c.getToggleUp()) {
                             c.minusToScore();
                             c.minusToScore();
-                            toggleUp = false;
+                            c.changeToggleUp();
                             //highlight toggleDown
                             //unhighlight toggleUp
 
-                        } else if (toggleDown && !toggleUp) {
+                        } else if (c.getToggleDown() && !c.getToggleUp()) {
                             c.minusToScore();
                             //highlight toggleDown
-                        } else if (!toggleDown && !toggleUp) {
+                        } else if (!c.getToggleDown() && !c.getToggleUp()) {
                             c.addToScore();
                             //unhighlight toggleDown
                         }
                         notifyDataSetChanged();
-                        Log.d("SCORE", Integer.toString(c.getScore()));
-                        Log.d("TOGGLEUP", Boolean.toString(toggleUp));
-                        Log.d("TOGGLEDOWN", Boolean.toString(toggleDown));
                     }
                 });
             }

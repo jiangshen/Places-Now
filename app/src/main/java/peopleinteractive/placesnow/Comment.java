@@ -11,6 +11,8 @@ public class Comment {
     private String time;
     private String info;
     private int score;
+    private boolean toggleUp;
+    private boolean toggleDown;
 
     Comment(String info) {
         score = 0;
@@ -19,6 +21,8 @@ public class Comment {
         SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy HH:mm");
         Date date = new Date();
         time = sdf.format(date);
+        toggleUp = false;
+        toggleDown = false;
     }
 
     public void addToScore() {
@@ -39,6 +43,21 @@ public class Comment {
     }
 
     public void setScore(int score) { this.score = score; }
+    public boolean getToggleUp() {
+        return toggleUp;
+    }
+
+    public boolean getToggleDown() {
+        return toggleDown;
+    }
+
+    public void changeToggleUp() {
+        toggleUp = !toggleUp;
+    }
+
+    public void changeToggleDown() {
+        toggleDown = !toggleDown;
+    }
 
     @Override
     public String toString() {
