@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="peopleinteractive.placesnow.HomePage">
+    tools:context="peopleinteractive.placesnow.HomePage"
+    android:background="#E0F2F1">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical" android:layout_width="match_parent"
@@ -24,22 +25,40 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/app_info"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:id="@+id/textView"
             android:textAlignment="center"
             android:layout_weight="0.42"
             android:textColor="@color/textSecondary" />
 
+        <!--<Button-->
+            <!--android:layout_width="223dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Enter"-->
+            <!--android:id="@+id/button"-->
+            <!--android:layout_gravity="center_horizontal"-->
+            <!--android:layout_weight="0.05"-->
+            <!--android:onClick="getStarted"-->
+            <!--android:textColor="@color/colorText"-->
+            <!--android:clickable="true"-->
+            <!--android:background="@color/colorPrimary" />-->
+
         <Button
-            android:layout_width="223dp"
-            android:layout_height="wrap_content"
-            android:text="Enter"
-            android:id="@+id/button"
             android:layout_gravity="center_horizontal"
-            android:layout_weight="0.05"
+            android:id="@+id/button_enter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="36dp"
+            android:paddingEnd="36dp"
+            android:paddingTop="24dp"
+            android:paddingBottom="24dp"
             android:onClick="getStarted"
-            android:textColor="@color/colorText"
-            android:clickable="true"
-            android:background="@color/colorPrimary" />
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#FFF"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="Enter"/>
     </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>

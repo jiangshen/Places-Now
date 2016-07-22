@@ -32,6 +32,8 @@ import java.util.ArrayList;
 
 public class Info extends AppCompatActivity {
 
+    //private DatabaseReference mDatabase;
+
     List<Comment> commentArray = new ArrayList<Comment>();
 
     private CommentAdapter commentAdapter;
@@ -64,6 +66,8 @@ public class Info extends AppCompatActivity {
 
         Firebase.setAndroidContext(this);
 
+       // mDatabase = FirebaseDatabase.getInstance().getReference();
+
         Intent intent = getIntent();
         currPlaceName = intent.getStringExtra("PlaceName");
         currLat = intent.getDoubleExtra("Lat", 0.0);
@@ -77,6 +81,8 @@ public class Info extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         populateListView();
+
+//        Log.d("APPLE", DataManager.recieveComments(currPlaceName).toString());
     }
 
     private void populateListView() {
@@ -93,7 +99,7 @@ public class Info extends AppCompatActivity {
         else {
             for (int i = 0; i < commentArray.size(); i++) {
                 int lastSortedIndex = i;
-                while (i > 0 && (commentArray.get(i).getScore() - commentArray.get(i-1).getScore() < 0)) {
+                while (i > 0 && (commentArray.get(i).getScore() - commentArray.get(i-1).getScore() > 0)) {
                     int score = commentArray.get(i).getScore();
                     commentArray.get(i).setScore(commentArray.get(i-1).getScore());
                     commentArray.get(i-1).setScore(score);
@@ -102,6 +108,12 @@ public class Info extends AppCompatActivity {
                 i = lastSortedIndex;
             }
         }
+        populateListView();
+    }
+
+    public void sortByDate(View view) {
+
+
         populateListView();
     }
 

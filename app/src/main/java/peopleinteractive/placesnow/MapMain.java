@@ -108,7 +108,7 @@ public class MapMain extends FragmentActivity implements OnMapReadyCallback, Loc
 
         mMap.getUiSettings().setMapToolbarEnabled(true);
         mMap.getUiSettings().setMyLocationButtonEnabled(false);
-        mMap.getUiSettings().setZoomControlsEnabled(true);
+        mMap.getUiSettings().setZoomControlsEnabled(false);
     }
 
     /**
