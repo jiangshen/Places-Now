@@ -110,7 +110,7 @@ public class Info extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int id) {
                 String comment = editText.getText().toString();
 
-                DataManager.addComment(currPlaceName, comment);
+                DataManager.addComment(currPlaceName, new Comment(comment));
 
                 commentArray.add(new Comment(comment));
                 Log.d("COMMENT", comment);
